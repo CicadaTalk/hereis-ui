@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<view class='category' wx:for="{{categories}}" wx:for-item="categoryItem" wx:key="name">
+  {{categoryItem.category}}
+  <view class='menu' wx:for="{{categoryItem.menus}}" wx:for-item="menuItem" wx:key="name">
+    {{menuItem.name}}--价格：{{menuItem.price}}元
+  </view>
+</view>
+
+<button ></button>

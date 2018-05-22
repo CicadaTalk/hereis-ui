@@ -1,0 +1,26 @@
+<!--pages/addRestaurnant/addRestaurant.wxml-->
+<view class='container'>
+  <image style="width: 100%; height: 600rpx; background-color: #eeeeee;" mode="scaleToFill" src="{{src}}" bindtap='uploadImage'>
+  </image>
+</view>
+
+<form bindsubmit='formSubmit'>
+  <!-- 标题输入框 -->
+  <view class='container'>
+    <view>
+      <text>标题</text>
+    </view>
+    <input class='border' placeholder='请输入标题' name='titleInput'>
+    </input>
+  </view>
+
+  <!--去掉view之后可以，不去掉view不可以触发form-->
+  <view class='container'>
+    <text>概要介绍</text>
+  </view>
+  <textarea class='container ' placeholder='概要介绍录入框' name='introductionInput'>
+  </textarea>
+  <view>0/200</view>
+
+  <button class='container' form-type='submit'> 提交 </button>
+</form>
