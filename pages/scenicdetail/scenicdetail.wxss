@@ -1,0 +1,52 @@
+/* pages/scenicdetail/scenicdetail.wxss */
+page {
+  height: 100%;
+  width: 100%;
+  background-color: ghostwhite;
+}
+
+.detail {
+  height: auto;
+  /* width: 100%; */
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  font-size: 80%;
+}
+
+.activity {
+  height: auto;
+  /* width: 100%; */
+  padding-top: 100rpx;
+}
+
+.activity_item {
+  height: auto;
+  /* width: 100%; */
+  padding-left: 10rpx;
+  padding-top: 10rpx;
+  padding-right: 10rpx;
+  background: #ebebeb;
+  border: 10rpx solid #ffffff;
+}
+
+.time {
+  /* width: 100%; */
+  position: relative;
+  left:45%;
+  /**设置字体大小 使用父元素的百分比作为单位**/
+  font-size: 70%;
+}
+
+.warning {
+  height: auto;
+  /* width: 100%; */
+  padding-top: 50rpx;  
+}
+
+.button {
+  height: auto;
+  position: fixed;
+  bottom: 5rpx;
+  right: 5rpx;
+  background-color: #ebebeb;
+}

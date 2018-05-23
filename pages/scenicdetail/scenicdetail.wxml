@@ -1,0 +1,25 @@
+<!--pages/scenicdetail/scenicdetail.wxml-->
+<view class='detail'>
+  <text>详细介绍：\n{{scenicSpotDetail}}</text>
+  <button class='button' bindtap='openComment'>评论</button>
+  <view class='activity'>
+    <text>活动列表：\n</text>
+    <block wx:for-items="{{activityData}}" wx:key="{{activityData.activityId}}">
+      <view class='activity_item'>
+        <view>
+          <text>{{item.name}}</text>
+        </view>
+        <view>
+          <text>{{item.intro}}</text>
+        </view>
+        <view>
+          <text class='time'>{{item.beginTime}}-{{item.endTime}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class='warning'>
+      <text>提醒：\n{{scenicSpotWarning}}</text>
+  </view>
+  <view><text>\n\n\n\n\n\n</text></view>
+</view>

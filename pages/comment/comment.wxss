@@ -1,0 +1,44 @@
+/* pages/comment/comment.wxss */
+pages {
+  height: 100%;
+  width: 100%;
+}
+
+.comment_list {
+  height: auto;
+  padding-top: 80rpx;
+}
+
+.comment_item {
+  height: auto;
+  padding-left: 20rpx;
+  padding-top: 20rpx;
+  padding-right: 10rpx;
+  background: #ebebeb;
+  border: 10rpx solid #ffffff;
+}
+
+.time {
+  width: 100%;
+  position: relative;
+  left:55%;
+  /**设置字体大小 使用父元素的百分比作为单位**/
+  font-size: 70%;
+}
+
+.comment_edit {
+  height: auto;  
+}
+
+.input {
+  width: 100%;
+  padding: 0rpx 10rpx 0rpx 10rpx;
+  border: 1rpx solid lightgray;
+  border-radius: 25rpx;
+}
+
+.button {
+  height: auto;
+  background-color: #cbcbcb;
+  font-size: 80%;
+}

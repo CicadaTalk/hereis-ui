@@ -1,0 +1,29 @@
+<!--pages/comment/comment.wxml-->
+<view class='pages'>
+  <form bindsubmit='formSubmit'>
+    <view class='comment_edit'>
+      <textarea class='input' bindblur='bindTextAreaBlur' placeholder='请输入评论内容'></textarea>
+      <button class='button' form-type='submit'>留言</button>
+    </view>
+  </form>
+  <view class='comment_list' style="height: 400px;">
+    <text>评论列表</text>
+    <block wx:for-items="{{comments}}" wx:key="{{comments.commentId}}">
+      <view class='comment_item'>
+        <view>
+          <text>{{item.userId}}</text>
+          <text class='time'>{{item.time}}</text>
+        </view>
+        <view>
+          <text>{{item.comment}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class='comment_edit'>
+    <!-- <form bindsubmit='bindFormSubmit'>
+    <textarea class='input' placeholder='textarea' name='comment' number='500'></textarea>
+    <button class='button' form-type='submit'>发送</button>
+  </form> -->
+  </view>
+</view>
