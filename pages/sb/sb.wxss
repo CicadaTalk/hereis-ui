@@ -1,0 +1,45 @@
+/* pages/sb/sb.wxss */
+
+.close {
+  display: none;
+}
+
+.floor-list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.classroom-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.classroom-list-item {
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-around; */
+}
+
+.course-list {
+  width: 90vw; height: 50vw;
+  background-color: black;
+}
+
+.course-id {
+  color: white;
+}
+
+.course-name {
+  color: white;
+}
+
+.course-time {
+  color: white;
+}
+
+.course-gap {
+  height: 3vw;
+  background-color: aqua;
+}

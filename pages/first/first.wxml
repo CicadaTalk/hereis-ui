@@ -1,0 +1,15 @@
+<!--pages/first/first.wxml-->
+<view class='container'>
+  <view class='wrapper'>
+    <view class="blur-bg"/>
+    <view class='intro'>
+      <view><text>Hello World</text></view>
+      <view><text>Hello World</text></view>
+      <view><text>Hello World</text></view>
+      <view><text>Hello World</text></view>
+      <view><text>Hello World</text></view>
+      <view><text>Hello World</text></view>
+    </view>
+  </view>
+  <!-- 背景 -->
+</view>
