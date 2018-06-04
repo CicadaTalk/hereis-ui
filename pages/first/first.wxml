@@ -1,15 +1,11 @@
-<!--pages/first/first.wxml-->
-<view class='container'>
-  <view class='wrapper'>
-    <view class="blur-bg"/>
-    <view class='intro'>
-      <view><text>Hello World</text></view>
-      <view><text>Hello World</text></view>
-      <view><text>Hello World</text></view>
-      <view><text>Hello World</text></view>
-      <view><text>Hello World</text></view>
-      <view><text>Hello World</text></view>
-    </view>
-  </view>
-  <!-- 背景 -->
-</view>
+<swiper style= "height: {{deviceHeight}}px;" data-='' bindchange='change'>
+  <block wx:for-items="{{spots}}" wx:key="{{spots.spotId}}">
+    <swiper-item item-id="{{spots.spotId}}" style = "background-image: url('{{item.bgImg}}'); background-position: center;">
+      <view class='wrapper'>
+        <view class='intro'  bindtouchstart='myTouchStart' bindtouchmove='myTouchMove'>
+            <text decode='true'>{{item.name}}\n&nbsp;&nbsp;{{item.brief}}\n\n</text>
+        </view>
+      </view>
+    </swiper-item>
+  </block>
+</swiper>

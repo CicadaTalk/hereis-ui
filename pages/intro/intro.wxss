@@ -1,0 +1,76 @@
+/* pages/intro/intro.wxss */
+
+@import "../scenicdetail/scenicdetail.wxss";
+@import "../restaurant/restaurant.wxss";
+@import "../sb/sb.wxss";
+
+page {
+  background: white;
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+
+  overflow: scroll;
+}
+
+/* ======背景====== */
+.background-wrapper {
+  /* 使wrapper贴合图片 */
+  display: flex;
+  /* 固定背景图片 */
+  position: fixed;
+  /* 背景图片置底 */
+  z-index: 10;
+}
+
+/* ======内容====== */
+.content-wrapper {
+  width: 100%;
+  height: 100%;
+  /* 内容置顶 */
+  position: relative;
+  z-index: 100;
+}
+
+/* ======简介====== */
+.brief-intro-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
+}
+
+.brief-intro-animation-wrapper {
+  width: 100%;
+  height: 100%;
+  /* 背景 */
+  background: rgba(230, 230, 230, 0.8);
+}
+
+.brief-intro-content-wrapper {
+  /* 背景 */
+  background: rgba(230, 230, 230, 0.8);
+}
+
+.title {
+  color: #000; /* TODO: 微调 */
+  font-size: 20pt;
+}
+
+.brief-intro {
+  color: #000; /* TODO: 微调 */
+  font-size: 14pt;
+}
+
+/* ====景点信息==== */
+
+.intro {
+  color: #000;
+}
+
+.warning {
+  color: #000;
+}

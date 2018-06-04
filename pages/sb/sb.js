@@ -1,6 +1,6 @@
 // pages/sb/sb.js
-const getCourseByClassrommURL = "http://127.0.0.1:8080/getCourseByClassroom"
-const getClassroomListURL = "http://127.0.0.1:8080/getClassroomList"
+const getCourseByClassrommURL = "https://lazyzhou.xin/getCourseByClassroom"
+const getClassroomListURL = "https://lazyzhou.xin/getClassroomList"
 
 Page({
 
@@ -10,8 +10,121 @@ Page({
   data: {
     // 信息数据
     spotId: 2,
-    buildings: [],
-    courses: [],
+    buildings: [
+      {
+        floor: 1,
+        open: true,
+        classroomList: [
+          {
+            id: 1,
+            classroom: "A301",
+            classroomType: "duomeiti",
+            free: true
+          },
+          {
+            id: 2,
+            classroom: "A302",
+            classroomType: "duomeiti",
+            free: true
+          },
+          {
+            id: 3,
+            classroom: "A303",
+            classroomType: "duomeiti",
+            free: true
+          },
+          {
+            id: 4,
+            classroom: "A304",
+            classroomType: "duomeiti",
+            free: true
+          },
+        ]
+      },
+      {
+        floor: 2,
+        open: false,
+        classroomList: [
+          {
+            id: 1,
+            classroom: "A301",
+            classroomType: "duomeiti",
+            free: true
+          }
+        ]
+      },
+      {
+        floor: 3,
+        open: false,
+        classroomList: [
+          {
+            id: 1,
+            classroom: "A301",
+            classroomType: "duomeiti",
+            free: true
+          }
+        ]
+      },
+      {
+        floor: 4,
+        open: false,
+        classroomList: [
+          {
+            id: 1,
+            classroom: "A301",
+            classroomType: "duomeiti",
+            free: true
+          }
+        ]
+      },
+      {
+        floor: 5,
+        open: false,
+        classroomList: [
+          {
+            id: 1,
+            classroom: "A301",
+            classroomType: "duomeiti",
+            free: true
+          }
+        ]
+      },
+      {
+        floor: 6,
+        open: false,
+        classroomList: [
+          {
+            id: 1,
+            classroom: "A301",
+            classroomType: "duomeiti",
+            free: true
+          }
+        ]
+      },
+    ],
+    courses: [
+      {
+        id: "1",
+        no: "2",
+        name: "课程",
+        beginTime: 1,
+        endTime: 2,
+      },
+      {
+        id: "2",
+        no: "2",
+        name: "课程",
+        beginTime: 1,
+        endTime: 2,
+      },
+      {
+        id: "3",
+        no: "2",
+        name: "课程",
+        beginTime: 1,
+        endTime: 2,
+      },
+    ],
     // 页面控制数据
     showCourse: false,
   },
@@ -20,7 +133,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getClassroomList();
+    this.data.spotId = options.spotId;
+    console.log(options.spotId);
+    console.log(options.category);
+    // this.getClassroomList();
   },
 
   /**
@@ -115,11 +231,13 @@ Page({
     });
     this.setData({
       showCourse: !this.data.showCourse
-    });    
+    });
+    console.log(!this.data.showCourse);
   },
 
   /* 关闭课程信息 */
   courseCloseToggle() {
+    console.log("close " + this.data.showCourse);
     this.setData({
       showCourse: false
     });

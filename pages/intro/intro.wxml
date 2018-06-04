@@ -1,0 +1,45 @@
+<!--pages/intro/intro.wxml-->
+
+<import src="../scenicdetail/scenicdetail.wxml"/>
+<import src="../sb/sb.wxml"/>
+<import src="../restaurant/restaurant.wxml"/>
+
+<swiper class='wrapper' bindchange='swiperChange'>
+    <block wx:for-items="{{spots}}" wx:key="{{spots.spotId}}">
+      <swiper-item item-id="{{spots.spotId}}">
+        <scroll-view scroll-y style='width:100%; height:100%;' upper-threshold="0">
+        <view class='background-wrapper'> 
+          <image
+            style='width: {{bg_W}}px; height: {{bg_H}}px;'
+            src='{{item.bgImg}}' 
+            bindload='bgLoad'
+          ></image>
+        </view>
+        <view
+          class='content-wrapper'
+          bindtouchstart='pageScrollStart'
+          bindtouchmove='pageScrollAnimate'
+        >
+          <view class='brief-intro-wrapper'>
+            <view class='brief-intro-content-wrapper'>
+              <view class='title'>{{item.name}}</view>
+              <view class='brief-intro'>{{item.briefIntro}}</view>
+            </view>
+            <view 
+              id = "scroll-animator"
+              class='brief-intro-animation-wrapper'
+              style='opacity:{{bf_O}};'
+            ></view>
+          </view>
+          <view class='info-wrapper'>
+            <block wx:if="{{item.ready}}">
+             <template wx:if="{{item.category == 'scenic'}}" is="scenic-spot-template" data="{{...item.info}}"></template>  
+             <template wx:if="{{item.category == 'sb'}}" is="school-building-template" data="{{...item.info}}"></template>  
+             <template wx:if="{{item.category == 'restaurant'}}" is="restaurant-template" data="{{...item.info}}"></template>  
+            </block>
+          </view>
+        </view>
+        </scroll-view>
+      </swiper-item>
+    </block>
+</swiper>

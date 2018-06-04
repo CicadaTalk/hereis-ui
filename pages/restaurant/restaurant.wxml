@@ -1,9 +1,53 @@
-<!--index.wxml-->
-<view class='category' wx:for="{{categories}}" wx:for-item="categoryItem" wx:key="name">
-  {{categoryItem.category}}
-  <view class='menu' wx:for="{{categoryItem.menus}}" wx:for-item="menuItem" wx:key="name">
-    {{menuItem.name}}--价格：{{menuItem.price}}元
-  </view>
+<view class='restaurant'>
+  <block wx:for-items="{{categories}}" wx:key="{{item.category}}">
+    <view class='category' data-category='{{item.category}}' bindtap='showMenu'>
+      <view class='category_name'>
+        <text>{{item.category}}</text>
+      </view>
+      <view class='{{item.open ? "menu_list" : "close"}}'>
+        <block wx:for-items="{{item.menus}}" wx:key="{{item.menus.menuId}}">
+          <view class='menu'>
+          <view class='menu_image'>
+          <image style="width:50px; height: 50px;" src="{{item.imagePath}}" mode="aspectFit"></image>
+          </view>
+            <view class='menu_content'>
+              <text>{{item.name}}\n</text>
+              <text>价格：{{item.price}}元</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>
+<view class='button'>
+  <image style="width: 50px; height: 40px;" mode="aspectFit" src="../../img/comment.png" bindtap='openComment'></image>
 </view>
 
-<button ></button>
+<template name="restaurant-template">
+  <view class='restaurant'>
+    <block wx:for-items="{{categories}}" wx:key="{{item.category}}">
+      <view class='category' data-category='{{item.category}}' bindtap='showMenu'>
+        <view class='category_name'>
+          <text>{{item.category}}</text>
+        </view>
+        <view class='{{item.open ? "menu_list" : "close"}}'>
+          <block wx:for-items="{{item.menus}}" wx:key="{{item.menus.menuId}}">
+            <view class='menu'>
+            <view class='menu_image'>
+            <image style="width:50px; height: 50px;" src="{{item.imagePath}}" mode="aspectFit"></image>
+            </view>
+              <view class='menu_content'>
+                <text>{{item.name}}\n</text>
+                <text>价格：{{item.price}}元</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class='button'>
+    <image style="width: 50px; height: 40px;" mode="aspectFit" src="../../img/comment.png" bindtap='openComment'></image>
+  </view>
+</template>

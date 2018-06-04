@@ -1,0 +1,42 @@
+<!--pages/input/input.wxml-->
+<view class='wrapper'>
+  <view class='choose-image'>
+    <image src='{{src}}'></image>
+  </view>
+  <button type='primary' bindtap='chooseImage'>添加图片</button>
+  <form bindsubmit='getSpotData'>
+    <view class='save'>
+      <view class='save-border'>
+        <view class='spot-name'>
+          <text>名称</text>
+        </view>
+        <view class='spot-name-input'>
+          <input name='name' placeholder='请输入热点名称' type='text' maxlength='20'></input>
+        </view>
+      </view>
+    </view>
+    <view class='save'>
+      <text>简介</text>
+      <view class='spot-brief-border'>
+        <view class='spot-brief-area'>
+          <textarea name='briefIntro' placeholder='请输入热点简介'></textarea>
+        </view>
+      </view>
+    </view>
+    <view class='save'>
+      <text>录入类型</text>
+      <radio-group name='category'>
+        <label wx:for="{{items}}" wx:key="{{item.name}}">
+          <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+        </label>
+      </radio-group>
+    </view>
+    <view class='save' style='padding-top:60px;'>
+      <button form-type='submit' type='primary'>下一步</button>
+      <view style='padding-top: 10px; padding-bottom: 10px;'>
+        <button bindtap='cancel' type='warn'>取消</button>
+        <text>\n\n\n\n\n\n\n\n</text>
+      </view>
+    </view>
+  </form>
+</view>

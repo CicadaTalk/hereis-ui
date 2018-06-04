@@ -2,21 +2,35 @@
 <view class='pages'>
   <form bindsubmit='formSubmit'>
     <view class='comment_edit'>
-      <textarea class='input' bindblur='bindTextAreaBlur' placeholder='请输入评论内容'></textarea>
-      <button class='button' form-type='submit'>留言</button>
+      <view class='input'>
+      <view class='input_border'>
+      <view class='input_content'>
+      <textarea bindblur='bindTextAreaBlur' placeholder='请输入评论内容'></textarea>
+      </view>
+      <view class='button'><button form-type='submit'open-type="getUserInfo" bindgetuserinfo="formSubmit">留言</button></view>
+      </view>
+      </view>
+      
     </view>
   </form>
   <view class='comment_list' style="height: 400px;">
-    <text>评论列表</text>
+    <text>评论</text>
     <block wx:for-items="{{comments}}" wx:key="{{comments.commentId}}">
+      <view class='comment'>
+      <view class='comment_border'>
       <view class='comment_item'>
         <view>
-          <text>{{item.userId}}</text>
-          <text class='time'>{{item.time}}</text>
+          <image class='headimage' src="{{item.imagePath}}"></image>
+          <text class='username'>{{item.name}}</text>
         </view>
         <view>
           <text>{{item.comment}}</text>
         </view>
+        <view>
+          <text class='time'>{{item.time}}</text>
+        </view>
+      </view>
+      </view>
       </view>
     </block>
   </view>
@@ -26,4 +40,7 @@
     <button class='button' form-type='submit'>发送</button>
   </form> -->
   </view>
+
+  <!-- <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+<view wx:else>请升级微信版本</view> -->
 </view>

@@ -1,25 +1,58 @@
 /* pages/sb/sb.wxss */
+.page {
+  height: 100%;
+}
 
 .close {
   display: none;
 }
 
+.container {
+  height: 100%;
+  padding: 10px 10px 10px 10px;
+  /* background-image: url("http://img14.3lian.com/201507/27/27e41525a252489723c57103ef3c2b55.jpg"); */
+}
+
+.floor_border {
+  height: auto;
+  width: 100%;
+  background-color: whitesmoke;
+  border: 1px solid seagreen;
+  border-radius: 5px;
+}
+
 .floor-list {
   width: 100%;
-
   display: flex;
   flex-direction: column;
+}
+
+.floor-list-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid seagreen;
+}
+
+.floor {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .classroom-list {
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 
 .classroom-list-item {
   /* display: flex;
   flex-direction: row;
   justify-content: space-around; */
+  border-bottom: 1px solid seagreen;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .course-list {
@@ -42,4 +75,4 @@
 .course-gap {
   height: 3vw;
   background-color: aqua;
-}
+ } 
