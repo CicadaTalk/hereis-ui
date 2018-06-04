@@ -1,0 +1,53 @@
+/* pages/inputdetail/inputdetail.wxss */
+page {
+  height: 100%;
+  width: 100%;
+}
+
+.wrapper {
+  padding: 10px;
+  background-color: whitesmoke;
+}
+
+.border {
+  border: 1px solid gainsboro;
+}
+
+.detail-intro {
+  background-color: white;
+  padding: 10px;
+}
+
+.detail-activity {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.detail-activity-name {
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.detail-activity-button {
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.detail-warning {
+  padding: 10px;
+  background-color: white;
+}
+
+.detail-activity-picker {
+  background: #CABBC7;
+  padding: 5px;
+
+  display: flex;
+  flex-direction: row;
+}

@@ -1,31 +1,61 @@
-/**index.wxss**/
-.userinfo {
+.restaurant {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: cursive;
+}
+
+.category {
+  display: block;
+  border-bottom: 1px solid #aaa;
+  /* padding-top: 10px; */
+  border: 1px solid silver;
+  border-radius: 5px;
+}
+
+.category_name {
+  height: 30px;
+  background-color: whitesmoke;
+  border-bottom: 1px solid #aaa;
+  padding-top: 10px;
+  /* padding-bottom: 10px; */
+  padding-left: 5px;
+  /* padding-right: 10px; */
+}
+
+.close {
+  display: none;
+}
+
+.menu_list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
-
-.category{
-  display: block;
-  background-color: #eb8e60
 }
 
 .menu{
-  display: block;
-  background-color: #bcd486
+  flex-direction: row;
+  display: flex; 
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #aaa;
+}
+
+.menu_content {
+  padding-left: 20px;
+}
+
+.menu_image {
+  height: auto;
+  width: auto;
+}
+
+.button {
+  height: auto;
+  position: fixed;
+  bottom: 5rpx;
+  right: 5rpx;
+  padding-bottom: 10px;
+  padding-right: 10px;
 }

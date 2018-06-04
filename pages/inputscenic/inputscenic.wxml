@@ -1,0 +1,53 @@
+<!--pages/inputdetail/inputdetail.wxml-->
+<view class='wrapper'>
+  <view class='detail-intro'>
+    <text>详细介绍</text>
+    <view class='border'>
+      <textarea name='intro' placeholder='请输入详细介绍' style='height: 400px;' maxlength='-1' bindblur='introInput'></textarea>
+    </view>
+  </view>
+  <text>活动列表</text>
+  <block wx:for-items="{{activities}}" wx:key="{{item.id}}">
+    <view class='detail-activity' bindtap='setCurrentId' data-id='{{item.id}}'>
+      <view class='border'>
+        <view class='detail-activity-name'>
+          <text decode='true'>名称&nbsp;&nbsp;</text>
+          <input placeholder='请输入活动名称' bindblur='activityNameInput'></input>
+        </view>
+      </view>
+      <view>
+        <text>介绍</text>
+        <view class='border'>
+          <textarea placeholder='请输入活动介绍' maxlength='300' bindblur='activityIntroInput'></textarea>
+        </view>
+      </view>
+      <view class='detail-activity-picker'>
+        <text decode='true'>开始时间: &nbsp;</text>
+        <picker mode='date' value='2018-01-01' start="2018-01-01" end="2048-01-01" bindchange='bindBeginDateChange'>{{item.beginDate}}</picker>
+        <text decode='true'>&nbsp;&nbsp;&nbsp;</text>
+        <picker mode='time' value='12:00' start='00:00' end='23:59' bindchange='bindBeginTimeChange'>{{item.beginTime}}</picker>
+      </view>
+      <view class='detail-activity-picker'>
+        <text decode='true'>结束时间: &nbsp;</text>
+        <picker mode='date' value='2018-01-01' start="2018-01-01" end="2048-01-01" bindchange='bindEndDateChange'>{{item.endDate}}</picker>
+        <text decode='true'>&nbsp;&nbsp;&nbsp;</text>
+        <picker mode='time' value='17:00' start='00:00' end='23:59' bindchange='bindEndTimeChange'>{{item.endTime}}</picker>
+      </view>
+    </view>
+  </block>
+  <view class='detail-activity-button'>
+    <button bindtap='addActivity' type='primary' size='mini'>添加活动</button>
+    <button bindtap='removeActivity' type='warn' size='mini'>删除活动</button>
+  </view>
+  <view class='detail-warning'>
+    <text>温馨提示</text>
+    <view class='border'>
+      <textarea name='warning' placeholder='请输入提示信息' maxlength='300' bindblur='warningInput'></textarea>
+    </view>
+  </view>
+  <button bindtap='confirm' type='primary'>确定</button>
+  <view style='padding-top: 10px; padding-bottom: 10px;'>
+    <button bindtap='cancel' type='warn'>取消</button>
+    <text>\n\n\n\n\n\n\n\n</text>
+  </view>
+</view>

@@ -1,40 +1,49 @@
 /* pages/first/first.wxss */
 page {
-  background-image: url("https://hereis-1252733783.cos.ap-chengdu.myqcloud.com/cat.jpg");
-  background-size: cover;
-}
-
-.container {
+   height: 100%;
+   width: 100%;
 }
 
 .wrapper {
   /* 定位于屏幕底部 */
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-
+  position: fixed;
+  bottom: 0px; 
+  height: auto;
   width: 100%;
 }
 
+ 
 .intro::before {
-  content: ""; /* 用于显示背景 */
-  /* 固定于父容器底部 */
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-
-  /* 铺满父容器 */
-  width: 100%;
-  height: 100%; 
-  
-  /* TODO: 微调颜色 */
-  background-color: rgba(64, 64, 64, 0.5);
-}
+  content: "";
+} 
 
 .intro {
   position: relative; /* 令文字在背景上 */
-  /* TODO: 微调颜色 */
-  color: rgba(255,255,255,1);
+  
+  color: black;
+  background-color: rgba(255 , 255, 255, 0.8); 
+  font-family: cursive;
+
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+.icon_more {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.close {
+  display: none;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .blur-bg {
@@ -48,12 +57,11 @@ page {
   height: 100%; 
 
   /* 毛玻璃效果 */
-  background-attachment: fixed;
-  background-image: url("https://hereis-1252733783.cos.ap-chengdu.myqcloud.com/cat.jpg");
-  background-size: cover;
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -ms-filter: blur(5px);
-  -o-filter: blur(5px);
-  filter: blur(5px);
+   background-attachment: fixed;  
+  background-image: url("http://img5.imgtn.bdimg.com/it/u=1839364205,823342860&fm=27&gp=0.jpg");
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -ms-filter: blur(10px);
+  -o-filter: blur(10px);
+  filter: blur(10px);
 }

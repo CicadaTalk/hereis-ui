@@ -2,26 +2,43 @@
 pages {
   height: 100%;
   width: 100%;
+  background-color: yellowgreen
 }
 
 .comment_list {
   height: auto;
   padding-top: 80rpx;
+  padding-left: 10px;
+}
+
+.comment_border {
+  border: 1rpx solid gainsboro;
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px gainsboro;
+}
+
+.comment {
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
 }
 
 .comment_item {
   height: auto;
-  padding-left: 20rpx;
-  padding-top: 20rpx;
-  padding-right: 10rpx;
-  background: #ebebeb;
-  border: 10rpx solid #ffffff;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.username {
+  height: 30px;
+  padding-left: 10px;
 }
 
 .time {
   width: 100%;
-  position: relative;
-  left:55%;
+  
   /**设置字体大小 使用父元素的百分比作为单位**/
   font-size: 70%;
 }
@@ -31,14 +48,32 @@ pages {
 }
 
 .input {
-  width: 100%;
-  padding: 0rpx 10rpx 0rpx 10rpx;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.input_border {
   border: 1rpx solid lightgray;
-  border-radius: 25rpx;
+  border-radius: 10px;
+}
+
+.input_content {
+  width: 100%;
+  
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .button {
-  height: auto;
-  background-color: #cbcbcb;
+  background-color: rgba(224, 224, 224, 0.5);
   font-size: 80%;
+}
+
+.headimage {
+  height: 30px;
+  width: 30px;
 }

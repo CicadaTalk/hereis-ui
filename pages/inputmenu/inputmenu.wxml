@@ -1,0 +1,39 @@
+<!--pages/inputmenu/inputmenu.wxml-->
+<view class='wrapper'>
+  <view class='border'>
+    <text>菜单列表</text>
+    <block wx:for-items="{{menus}}" wx:key="{{item.id}}">
+      <view class='border'>
+        <view class='detail-menu' bindtap='setCurrentId' data-id='{{item.id}}'>
+          <view class='detail-menu-name'>
+            <text decode='true'>类别：</text>
+            <input placeholder='请输入菜的类别' bindblur='categoryInput'></input>
+          </view>
+          <view class='detail-menu-content'>
+            <image src='{{item.imgPath}}' style='height: 80px; width: 80px;' bindtap='chooseImage'></image>
+            <view class='menu-content'>
+              <view class='menu-content-'>
+                <text style='width: 60px;'>菜名</text>
+                <input placeholder='请输入菜名' bindblur='nameInput'></input>
+              </view>
+              <view class='menu-content-'>
+                <text style='width: 60px;'>价格</text>
+                <input placeholder='请输入菜的价格' bindblur='priceInput' type='number'></input>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class='add-menu-button'>
+      <button bindtap='addMenu' type='primary' size='mini'>添加菜品</button>
+      <button bindtap='removeMenu' type='warn' size='mini'>删除菜品</button>
+    </view>
+  </view>
+  <view style='margin-top: 10px;'>
+  <button bindtap='confirm' type='primary'>确定</button>
+  </view>
+  <view style='margin-top: 10px;'>
+  <button bindtap='cancel' type='warn'>取消</button>
+  </view>
+</view>

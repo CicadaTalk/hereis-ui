@@ -1,0 +1,23 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  /**项目排列方向从上到下**/
+  flex-direction: column;
+  /**排列空间不足时换行显示**/
+  flex: wrap;
+  /**项目在行中居中对齐**/
+  align-items: center;
+  /**多行排列时，设置行在交叉轴方向上的对齐方式**/
+  align-content: flex-start;
+  /**在主轴方向上居中排列**/
+  justify-content: center;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+  /*设置文字 正常显示 */
+  font-style: normal;  
+
+  background-attachment: fixed;
+
+} 
