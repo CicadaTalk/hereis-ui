@@ -283,6 +283,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 获取屏幕高度
+    this.setData({
+      deviceHeight: wx.getSystemInfoSync().windowHeight,
+    }),
+
+      console.log(wx.getSystemInfoSync().windowHeight)
+
+    // 检查用户授权情况
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userLocation']) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success() {
+              console.log("授权成功")
+            }
+          })
+        }
+      }
+    })
+
     // 教学楼
     // this.getSpot(104.07, 30.65, 0.0055);
     // 餐馆
