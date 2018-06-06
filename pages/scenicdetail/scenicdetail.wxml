@@ -1,38 +1,35 @@
 <!--pages/scenicdetail/scenicdetail.wxml-->
 <view class='bg'>
   <view class='detail'>
-    <view class='intro_border'>
-      <view class='detailintro'>
-        <view class='detailTitle'>
-          <text>详细介绍\n\n</text>
-        </view>
-        <text decode='true'>&nbsp;&nbsp;{{intro}}</text>
+    <view class='detailintro'>
+      <view class='detailTitle'>
+        <text>详细介绍\n\n</text>
       </view>
+      <text decode='true'>&nbsp;&nbsp;{{intro}}</text>
     </view>
     <!-- <button class='button' bindtap='openComment'>评论</button> -->
-    <view class='button'>
-    <image style="width: 50px; height: 40px;" mode="aspectFit" src="../../img/comment.png" bindtap='openComment'></image>
-    </view>
+
+
     <view class='activity_content'>
-      <view class='activity_border'>
+      <view class='detailTitle'>
         <text>近期活动\n\n</text>
-        <block wx:for-items="{{activities}}" wx:key="{{activities.activityId}}">
-          <view class='activity'>
-            <view class='activity_item'>
-              <view>
-                <text>{{item.name}}</text>
-              </view>
-              <view>
-                <text decode='true'>&nbsp;&nbsp;{{item.intro}}</text>
-              </view>
-              <view>
-                <text class='time'>{{item.beginTime}}-{{item.endTime}}</text>
-              </view>
+      </view>
+      <block wx:for-items="{{activities}}" wx:key="{{activities.activityId}}">
+        <view class='activity'>
+          <view class='activity_item'>
+            <view>
+              <text>{{item.name}}</text>
+            </view>
+            <view>
+              <text decode='true'>&nbsp;&nbsp;{{item.intro}}</text>
+            </view>
+            <view>
+              <text class='time'>{{item.beginTime}}-{{item.endTime}}</text>
             </view>
           </view>
+        </view>
 
-        </block>
-      </view>
+      </block>
     </view>
     <view class='warning'>
       <view class='warning_border'>
@@ -48,51 +45,42 @@
 </view>
 
 <template name="scenic-spot-template">
-  <view class='bg'>
-    <view class='detail'>
-      <view class='intro_border'>
-        <view class='detailintro'>
-          <view class='detailTitle'>
-            <text>详细介绍\n\n</text>
-          </view>
-          <text decode='true'>&nbsp;&nbsp;{{intro}}</text>
-        </view>
+  <view class='detail'>
+    <view class='detailintro'>
+      <view class='detailTitle'>
+        <text>详细介绍\n\n</text>
       </view>
-      <!-- <button class='button' bindtap='openComment'>评论</button> -->
-      <view class='button'>
-      <image style="width: 50px; height: 40px;" mode="aspectFit" src="../../img/comment.png" bindtap='openComment'></image>
+      <text decode='true'>&nbsp;&nbsp;{{intro}}</text>
+    </view>
+    <view class='activity_content'>
+      <view class='detailTitle'>
+        <text>近期活动\n\n</text>
       </view>
-      <view class='activity_content'>
-        <view class='activity_border'>
-          <text>近期活动\n\n</text>
-          <block wx:for-items="{{activities}}" wx:key="{{activities.activityId}}">
-            <view class='activity'>
-              <view class='activity_item'>
-                <view>
-                  <text>{{item.name}}</text>
-                </view>
-                <view>
-                  <text decode='true'>&nbsp;&nbsp;{{item.intro}}</text>
-                </view>
-                <view>
-                  <text class='time'>{{item.beginTime}}-{{item.endTime}}</text>
-                </view>
-              </view>
+      <block wx:for-items="{{activities}}" wx:key="{{activities.activityId}}">
+        <view class='activity'>
+          <view class='activity_item'>
+            <view>
+              <text>{{item.name}}</text>
             </view>
-
-          </block>
-        </view>
-      </view>
-      <view class='warning'>
-        <view class='warning_border'>
-          <view class='warning_content'>
-            <text decode='true'>提醒\n\n&nbsp;&nbsp;{{warning}}</text>
+            <view>
+              <text decode='true'>&nbsp;&nbsp;{{item.intro}}</text>
+            </view>
+            <view>
+              <text class='time'>{{item.beginTime}}-{{item.endTime}}</text>
+            </view>
           </view>
         </view>
-      </view>
-      <view>
-        <text>\n\n\n\n\n\n\n\n</text>
+      </block>
+    </view>
+
+    <view class='warning_content'>
+      <view class='warning'>
+        <view class='detailTitle'>
+          <text>提醒\n\n</text>
+        </view>
+        <text decode='true'>&nbsp;&nbsp;{{warning}}</text>
       </view>
     </view>
+    <image class='button' style="width: 25px; height: 20px;" mode="aspectFit" src="../../img/comment.png" bindtap='openComment'></image>
   </view>
 </template>

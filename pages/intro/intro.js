@@ -18,71 +18,16 @@ Page({
     // 界面属性
     // 背景宽度(无需设置)
     bg_W: 0,
-    // 背景高度(无需设置)
-    bg_H: 0,
+    // 背景高度
+    bg_H: 210,
     // 透明度(动画用)
     bf_O: 0,
     // swiper ID
     curr_I: 1,
     // 阻止多次打开
     mapLock: false,
-    touchStart: 0,
-    openMapToggle: false
-  },
-
-  /**
-   * 背景图片加载
-   */
-  bgLoad(e) {
-    var imageSize = util.backgroundAutoFit(e)
-    this.setData({
-      bg_W: imageSize.imageWidth,
-      bg_H: imageSize.imageHeight
-    })
-  },
-
-  /**
-   * 背景动画
-   */
-  pageScrollStart(e) {
-    var self = this;
-    var selector = wx.createSelectorQuery();
-    selector.select('#scroll-animator').boundingClientRect();
-    selector.exec(function (res) {
-      var top = -res[0].top;
-      if (top < 1E-6 && -top < 1E-6) {
-        self.setData({openMapToggle: true});
-      }
-    })
-    this.setData({
-      touchStart: e.touches[0].pageY
-    })
-  },
-
-  pageScrollAnimate(e) {
-    var self = this;
-    var opacity = this.data.bf_O;
-    var touchEnd = e.touches[0].pageY;
-    var selector = wx.createSelectorQuery();
-    selector.select('#scroll-animator').boundingClientRect();
-    selector.exec(function (res) {
-      var totalHeight = res[0].height;
-      var top = -res[0].top;
-      console.log(top)
-      if (top < 1E-6 && -top < 1E-6) {
-        if (self.data.touchStart - touchEnd < 0)
-          if (!self.data.mapLock && self.data.openMapToggle) {
-            self.openMap();
-            self.setData({mapLock:true});
-          }
-      }
-      // opacity = top / (totalHeight - 30);
-      // opacity = opacity > 1 ? 1 : opacity;
-      // opacity = opacity < 0 ? 0 : opacity;
-      // self.setData({
-      //   bf_O: opacity
-      // });
-    })
+    touchPos: 0,
+    touchOffset: 0
   },
 
   /**
@@ -92,6 +37,36 @@ Page({
     this.setData({
       curr_I: e.detail.current
     })
+  },
+
+  touchStart(e) {
+    var self = this;
+    var query = wx.createSelectorQuery();
+    var spots = this.data.spots;
+    var spotIndex = this.data.curr_I - 1;
+    var id = "#ruler" + spots[spotIndex].id;
+    query.select(id).boundingClientRect()
+    query.exec(function (res) {
+      console.log(res);
+      var top = res[0].top;
+      self.setData({
+        touchPos: e.touches[0].pageY,
+        touchOffset: top
+      });
+    })
+  },
+
+  touchMove(e) {
+    var begin_Y = this.data.touchPos;
+    var end_Y = e.touches[0].pageY;
+    if (!this.data.mapLock) {
+      if ( begin_Y - end_Y < -50) {
+        if (this.data.touchOffset == 0) {
+          this.setData({mapLock: true});
+          this.openMap()
+        }
+      }
+    }
   },
 
   /**
@@ -111,6 +86,7 @@ Page({
         var spots = res.data;
         for (var i = 0; i < spots.length; i++) {
           spots[i]["ready"] = false;
+          spots[i].bgImg = domainURL + "images/" + spots[i].bgImg;
         }
         self.setData({
           spots: spots
@@ -120,8 +96,8 @@ Page({
              self.getScenicSpot(self, i, spots[i].id);
           if (spots[i].category == "restaurant")
             self.getRestaurant(self, i, spots[i].id);
-          if (spots[i].category == "sb")
-            self.getSchoolBuilding(self, i, spots[i].id);
+          // if (spots[i].category == "sb")
+          //   self.getSchoolBuilding(self, i, spots[i].id);
         }
       }
     });
@@ -142,78 +118,6 @@ Page({
           spots: spots
         });
       }
-    });
-  },
-
-  /**
-   * SchoolBuilding信息获取
-   */
-  getSchoolBuilding(self, spotIndex, spotId) {
-    var spots = self.data.spots;
-    wx.request({
-      url: getSchoolBuildingURL,
-      data: {spotId: spotId},
-      success: function(res) {
-        var buildings = res.data;
-        for (var i = 0; i < buildings.length; i++) {
-          buildings[i]["open"] = false;
-        }
-        spots[spotIndex].info = { courses: [], buildings: buildings, showCourse: false};
-        spots[spotIndex].ready = true;
-        self.setData({
-          spots: spots
-        });
-      }
-    });
-  },
-
-  /**
-   * 展开楼层
-   */
-  floorToggle(e) {
-    var floor = e.currentTarget.dataset.floor;
-    var spotIndex = this.data.curr_I - 1;
-    var spots = this.data.spots;
-    var buildings = spots[spotIndex].info.buildings;
-    for (var i = 0, len = buildings.length; i < len; i++) {
-      if (buildings[i].floor == floor) buildings[i].open = !buildings[i].open;
-      // else buildings[i].open = false;
-    }
-    spots[spotIndex].buildings = buildings;
-    this.setData({
-      spots: spots
-    })
-  },
-
-  /**
-   *  显示课程信息 
-   */
-  courseShowToggle(e) {
-    var self = this;
-    wx.request({
-      url: getCourseByClassrommURL,
-      data: {
-        sbId: e.currentTarget.dataset.id
-      },
-      success: function (result) {
-        var spots = self.data.spots;
-        var spotIndex = self.data.curr_I - 1;
-        spots[spotIndex].info.courses = result.data;
-        spots[spotIndex].info.showCourse = true;
-        self.setData({ spots: spots });
-      }
-    });
-  },
-
-  /**
-   * 关闭课程信息
-   */
-  courseCloseToggle() {
-    var spots = this.data.spots;
-    var spotIndex = this.data.curr_I - 1;
-    spots[spotIndex].info.showCourse = !spots[spotIndex].info.showCourse;
-    this.setData({
-      spots: spots
     });
   },
 
@@ -304,10 +208,12 @@ Page({
       }
     })
 
+    // 景点
+    this.getSpot(103.800433, 30.944567, 0.1);
     // 教学楼
     // this.getSpot(104.07, 30.65, 0.0055);
     // 餐馆
-    this.getSpot(104.104005, 30.681519, 0.001);
+    // this.getSpot(104.104005, 30.681519, 0.001);
   },
 
   /**
@@ -321,7 +227,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({mapLock: false, openMapToggle: false});
+    this.setData({mapLock: false});
   },
 
   /**
@@ -342,7 +248,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.openMap();
   },
 
   /**
