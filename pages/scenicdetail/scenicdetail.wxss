@@ -1,68 +1,51 @@
 /* pages/scenicdetail/scenicdetail.wxss */
-page {
-  height: auto;
-  background-image: url("http://img5.imgtn.bdimg.com/it/u=1839364205,823342860&fm=27&gp=0.jpg");
-  background-attachment: fixed;
-}
-
-.bg {
-  height: 100%;
-  width: 100%;
-  
-}
-
-.intro_border {
-  
-  border: 10rpx solid rgba(226, 186, 115, 0.8);
-}
 
 .detail {
   height: auto;
   /* 设置间隔 */
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
-  /* 设置背景透明度  */
-  background-color: rgba(230, 230, 230, 0.8);
+  margin-top: 10px;
   /* 设置字体  */
   font-family: cursive;
 }
 
 .detailintro {
-
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  /* background: white; */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-.detailTitle {
-
-  text-decoration: underline;
-}
-
-.activity_border {
-  border: 10rpx solid rgba(226, 186, 115, 0.8);
-}
-
-.activity {
-  padding-top: 10px;
-  padding-bottom: 10px;
+.detailTitle::before {
+  position: absolute;
+  left: 0;
+  background-color: black;
+  content: "l";
+  width: 5px;
+  margin-right: 15px;
 }
 
 .activity_content {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  /* background: white; */
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.activity {
+  margin-top: 10px;
 }
 
 .activity_item {
   height: auto;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  /* background-color: rgba(210, 198, 176, 0.6); */
-  border: 1rpx solid rgba(226, 186, 115, 0.8);
+  margin-top: 10px;
+  /* background: white; */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .time {
@@ -72,27 +55,20 @@ page {
   font-size: 70%;
 }
 
-.warning_border {
-  border: 10rpx solid rgba(226, 186, 115, 0.8);
-}
-
-.warning {
-  height: auto;
-  padding-top: 50rpx;  
-}
-
 .warning_content {
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
+  /* background: white; */
+  height: auto;
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .button {
   height: auto;
   position: fixed;
-  bottom: 5rpx;
-  right: 5rpx;
-  padding-right: 10px;
-  padding-bottom: 10px;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 20px;
 }

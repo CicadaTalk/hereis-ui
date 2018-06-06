@@ -1,19 +1,23 @@
 /* pages/intro/intro.wxss */
 
 @import "../scenicdetail/scenicdetail.wxss";
-@import "../restaurant/restaurant.wxss";
-@import "../sb/sb.wxss";
+/* @import "../restaurant/restaurant.wxss"; */
 
 page {
-  background: white;
   width: 100%;
   height: 100%;
+  background-color: #f8f8f8;
 }
 
 .wrapper {
   width: 100%;
   height: 100%;
+}
 
+/* ======内容====== */
+.content-wrapper {
+  width: 100%;
+  height: 100%;
   overflow: scroll;
 }
 
@@ -21,56 +25,37 @@ page {
 .background-wrapper {
   /* 使wrapper贴合图片 */
   display: flex;
-  /* 固定背景图片 */
-  position: fixed;
-  /* 背景图片置底 */
-  z-index: 10;
-}
-
-/* ======内容====== */
-.content-wrapper {
-  width: 100%;
-  height: 100%;
-  /* 内容置顶 */
   position: relative;
-  z-index: 100;
+  /* 固定背景图片 */
+  z-index: 10;
 }
 
 /* ======简介====== */
 .brief-intro-wrapper {
-  display: flex;
-  flex-direction: column-reverse;
-  height: 100%;
-}
-
-.brief-intro-animation-wrapper {
-  width: 100%;
-  height: 100%;
-  /* 背景 */
-  background: rgba(230, 230, 230, 0.8);
-}
-
-.brief-intro-content-wrapper {
-  /* 背景 */
-  background: rgba(230, 230, 230, 0.8);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
 }
 
 .title {
-  color: #000; /* TODO: 微调 */
-  font-size: 20pt;
+  color: #FFF; /* TODO: 微调 */
+  font-size: 17pt;
 }
 
 .brief-intro {
-  color: #000; /* TODO: 微调 */
-  font-size: 14pt;
+  color: #EEE; /* TODO: 微调 */
+  font-size: 11pt;
 }
 
-/* ====景点信息==== */
-
-.intro {
-  color: #000;
+.info-wrapper {
+  position: relative;
+  z-index: 100;
+  border-radius: 20px;  
 }
 
-.warning {
-  color: #000;
-}
+/* ====== 按钮 ====== */

@@ -4,6 +4,5 @@
     "zan-col": "../../style/zanui/col/index",
     "zan-panel": "../../style/zanui/panel/index",
     "zan-popup": "../../style/zanui/popup/index"
-  },
-  "enablePullDownRefresh": true
+  }
 }
