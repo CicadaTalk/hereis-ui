@@ -4,19 +4,19 @@
 <import src="../sb/sb.wxml"/>
 <import src="../restaurant/restaurant.wxml"/>
 
-<swiper class='wrapper' bindchange='swiperChange' autoHeight='true'>    
+<swiper class='wrapper' bindchange='swiperChange' autoHeight='true'>      
   <block wx:for-items="{{spots}}" wx:key="{{spots.spotId}}">
-    <swiper-item item-id="{{spots.spotId}}">     
+    <swiper-item item-id="{{spots.spotId}}">       
       <scroll-view class='content-wrapper' scroll-y="true">
         <view id="ruler{{item.id}}" style='width100%; height:100%;' bindtouchstart='touchStart' bindtouchmove='touchMove'>
         <view class='background-wrapper'>
           <image
-            style='height: {{bg_H}}px;'
+            style='height: {{bg_H}}px;
             src='{{item.bgImg}}'
           ></image>
           <view class='brief-intro-wrapper'>
             <view class='brief-intro-content-wrapper'>
-              <view class='title'>{{item.name}}{{item.id}}</view>
+              <view class='title'>{{item.name}}</view>
               <view class='brief-intro'>{{item.briefIntro}}</view>
             </view>
           </view>
@@ -29,6 +29,6 @@
         </view>
         </view>
       </scroll-view>
-    </swiper-item>
+    </swiper-item>  
   </block>
-</swiper>    
+</swiper>  

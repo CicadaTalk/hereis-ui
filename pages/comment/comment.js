@@ -27,7 +27,7 @@ Page({
   getCommentList: function (spotId) {
     var that = this;
     wx.request({
-      url: 'https://lazyzhou.xin/getCommentsById',
+      url: 'http://127.0.0.1:8089/getCommentsById',
       data: { spotId: spotId },
       method: 'GET',
       header: {
