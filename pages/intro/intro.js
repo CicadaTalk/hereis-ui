@@ -23,7 +23,7 @@ Page({
     // 透明度(动画用)
     bf_O: 0,
     // swiper ID
-    curr_I: 1,
+    curr_I: 0,
     // 阻止多次打开
     mapLock: false,
     touchPos: 0,
@@ -43,7 +43,8 @@ Page({
     var self = this;
     var query = wx.createSelectorQuery();
     var spots = this.data.spots;
-    var spotIndex = this.data.curr_I - 1;
+    var spotIndex = this.data.curr_I;
+    console.log(spotIndex);
     var id = "#ruler" + spots[spotIndex].id;
     query.select(id).boundingClientRect()
     query.exec(function (res) {
@@ -133,6 +134,9 @@ Page({
         var categories = res.data;
         for (var i = 0; i < categories.length; i++) {
           categories[i]["open"] = false;
+          for (var j = 0; j < categories[i].menus.length; j++) {
+            categories[i].menus[j].imagePath = domainURL + "images/" + categories[i].menus[j].imagePath;
+          }
         }
         spots[spotIndex].info = {"categories" : categories};
         spots[spotIndex].ready = true;
@@ -148,7 +152,7 @@ Page({
    */
   showMenu(e) {
     var category = e.currentTarget.dataset.category;
-    var spotIndex = this.data.curr_I - 1;
+    var spotIndex = this.data.curr_I;
     var spots = this.data.spots;
     var categories = spots[spotIndex].info.categories;
     for (var i = 0; i < categories.length; i++) {
@@ -166,7 +170,7 @@ Page({
    * 打开评论
    */
   openComment: function (e) {
-    var spotIndex = this.data.curr_I - 1;
+    var spotIndex = this.data.curr_I;
     var spots = this.data.spots;
     wx.navigateTo({
       url: '../comment/comment?spotId=' + spots[spotIndex].id,
@@ -209,11 +213,10 @@ Page({
     })
 
     // 景点
-    this.getSpot(103.800433, 30.944567, 0.1);
-    // 教学楼
-    // this.getSpot(104.07, 30.65, 0.0055);
+    // this.getSpot(103.800433, 30.944567, 0.1);
     // 餐馆
-    // this.getSpot(104.104005, 30.681519, 0.001);
+    // this.getSpot(104.104005, 30.681519, 0.015);
+    this.getSpot(104.26884, 30.557151, 0.01);
   },
 
   /**

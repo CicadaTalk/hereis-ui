@@ -6,6 +6,7 @@
   margin-top: 10px;
   /* 设置字体  */
   font-family: cursive;
+  font-size: 17px;
 }
 
 .detailintro {
@@ -16,12 +17,17 @@
   padding-bottom: 5px;
 }
 
+.detailTitle {
+  font-size: 20px;
+}
+
 .detailTitle::before {
   position: absolute;
   left: 0;
   background-color: black;
-  content: "l";
-  width: 5px;
+  color: rgba(0, 0, 0, 0);
+  content: "1";
+  width: 6px;
   margin-right: 15px;
 }
 
