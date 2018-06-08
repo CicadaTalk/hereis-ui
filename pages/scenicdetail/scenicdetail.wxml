@@ -7,8 +7,6 @@
       </view>
       <text decode='true'>&nbsp;&nbsp;{{intro}}</text>
     </view>
-    <!-- <button class='button' bindtap='openComment'>评论</button> -->
-
 
     <view class='activity_content'>
       <view class='detailTitle'>
@@ -81,6 +79,5 @@
         <text decode='true'>&nbsp;&nbsp;{{warning}}</text>
       </view>
     </view>
-    <image class='button' style="width: 25px; height: 20px;" mode="aspectFit" src="../../img/comment.png" bindtap='openComment'></image>
   </view>
 </template>

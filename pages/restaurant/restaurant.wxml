@@ -50,7 +50,4 @@
       </view>
     </block>
   </view>
-  <view class='button'>
-    <image style="width: 50px; height: 40px;" mode="aspectFit" src="../../img/comment.png" bindtap='openComment'></image>
-  </view>
 </template>

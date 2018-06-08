@@ -23,11 +23,16 @@ page {
 
 /* ======背景====== */
 .background-wrapper {
+  width: 100%;
   /* 使wrapper贴合图片 */
   display: flex;
   position: relative;
   /* 固定背景图片 */
   z-index: 10;
+}
+
+.background-wrapper>image {
+  width: 100%; 
 }
 
 /* ======简介====== */
@@ -61,3 +66,26 @@ page {
 }
 
 /* ====== 按钮 ====== */
+.button-wrapper {
+  position: fixed;
+  bottom: 20px;
+  right: 0px;
+  width: 40px;
+}
+
+.button {
+  position: relative;
+  left: -10px;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 3px darkgrey;
+  background-color: white;
+}
+
+.button-img {
+  padding-top: 5px;
+  padding-left: 5px;
+  width: 20px;
+  height: 20px;
+}

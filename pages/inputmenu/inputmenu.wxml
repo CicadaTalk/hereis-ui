@@ -1,24 +1,40 @@
-<!--pages/inputmenu/inputmenu.wxml-->
-<view class='wrapper'>
-  <view class='border'>
-    <text>菜单列表</text>
+<scroll-view class='content-wrapper' scroll-y="true">
+  <view class='background-wrapper'>
+    <image style='height: {{bg_H}}px; width: 100%;' src='{{src}}'></image>
+    <view class='brief-intro-wrapper'>
+      <view class='brief-intro-content-wrapper'>
+        <view class='title'>
+          <input 
+            placeholder='标题'
+            placeholder-class='title-input'
+            bindblur='titleInput'>
+          </input> 
+        </view>
+        <view class='brief-intro'>
+          <input 
+            placeholder='简介'
+            placeholder-class='brief-intro-input'
+            bindblur='briefInput'>
+          </input> 
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='info-wrapper'>
     <block wx:for-items="{{menus}}" wx:key="{{item.id}}">
       <view class='border'>
         <view class='detail-menu' bindtap='setCurrentId' data-id='{{item.id}}'>
-          <view class='detail-menu-name'>
-            <text decode='true'>类别：</text>
-            <input placeholder='请输入菜的类别' bindblur='categoryInput'></input>
+          <view class='detail-menu-category'>
+              <input placeholder='  类别' bindblur='categoryInput' style='width: 100px; margin: 5px; border: 1px solid gainsboro; border-radius: 5px;'></input>
           </view>
           <view class='detail-menu-content'>
-            <image src='{{item.imgPath}}' style='height: 80px; width: 80px;' bindtap='chooseImage'></image>
+            <image src='{{item.imgPath}}' style='margin-left: 10px; height: 80px; width: 80px; border-radius:50%;' bindtap='chooseImage'></image>
             <view class='menu-content'>
               <view class='menu-content-'>
-                <text style='width: 60px;'>菜名</text>
-                <input placeholder='请输入菜名' bindblur='nameInput'></input>
+                <input placeholder='  菜名' bindblur='nameInput'></input>
               </view>
               <view class='menu-content-'>
-                <text style='width: 60px;'>价格</text>
-                <input placeholder='请输入菜的价格' bindblur='priceInput' type='number'></input>
+                <input placeholder='  价格' bindblur='priceInput' type='number'></input>
               </view>
             </view>
           </view>
@@ -26,14 +42,14 @@
       </view>
     </block>
     <view class='add-menu-button'>
-      <button bindtap='addMenu' type='primary' size='mini'>添加菜品</button>
-      <button bindtap='removeMenu' type='warn' size='mini'>删除菜品</button>
+      <image src='../../image/add_button.png' bindtap='addMenu' style='height: 40px; width: 40px'></image>
+      <image src='../../image/remove_button.png' bindtap='removeMenu' style='height: 40px; width: 40px'></image>
+    </view>
+    <view style='margin: 10px; padding-left:10px; padding-right:10px;'>
+      <button bindtap='confirm' type='primary'>确定</button>
+    </view>
+    <view style='margin: 10px; padding-left:10px; padding-right:10px;'>
+      <button bindtap='cancel' style='background: whitesmoke' >取消</button>
     </view>
   </view>
-  <view style='margin-top: 10px;'>
-  <button bindtap='confirm' type='primary'>确定</button>
-  </view>
-  <view style='margin-top: 10px;'>
-  <button bindtap='cancel' type='warn'>取消</button>
-  </view>
-</view>
+</scroll-view>

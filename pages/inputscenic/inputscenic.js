@@ -1,7 +1,6 @@
-
+const spotUrl = "https://lazyzhou.xin/";
 var array = [];
-var scenicUrl = "https://lazyzhou.xin/";
-// pages/inputdetail/inputdetail.js
+
 Page({
 
   /**
@@ -9,27 +8,60 @@ Page({
    */
   data: {
 
+    bg_H: 210,
+
+    bg_Img: "../../image/scenic.jpg",
+
+    // 设置默认图片
+    src: "../../img/purity.png",
+    // 设置spottId初始值
+    spotId: 19,
+    
     activities: [],
 
-    spotId: null,
+    id: 0,
 
-    id: 1,
+    title: "",
+
+    brief: "",
 
     intro: "",
 
     warning: "",
 
-    name: "",
+    activityname: "",
 
     activityIntro: "",
-  
+
+    // 服务响应消息
+    resultMessage: "success",
+  },
+
+  /**
+   * 获取标题
+   */
+  titleInput: function(e) {
+    // console.log(e.detail.value);
+    this.setData({
+      title: e.detail.value
+    })
+  },
+
+  /**
+   * 获取简介
+   */
+  briefInput: function(e) {
+    // console.log(e.detail.value);
+    this.setData({
+      brief: e.detail.value
+    })
   },
 
   /**
    * 获取详细信息
    */
-  introInput: function(e) {
-    console.log(e.detail.value);
+  introInput: function (e) {
+    // console.log(e.detail.value);
     this.setData({
       intro: e.detail.value
     })
@@ -38,8 +70,8 @@ Page({
   /**
    * 获取提示信息
    */
-  warningInput: function(e) {
-    console.log(e.detail.value);
+  warningInput: function (e) {
+    // console.log(e.detail.value);
     this.setData({
       warning: e.detail.value
     })
@@ -48,18 +80,18 @@ Page({
   /**
    * 获取活动名称
    */
-  activityNameInput: function(e) {
-    console.log(e.detail.value);
+  activityNameInput: function (e) {
+    // console.log(e.detail.value);
     this.setData({
-      name: e.detail.value
+      activityname: e.detail.value
     })
   },
 
   /**
    * 获取活动介绍
    */
-  activityIntroInput: function(e) {
-    console.log(e.detail.value);
+  activityIntroInput: function (e) {
+    // console.log(e.detail.value);
     this.setData({
       activityIntro: e.detail.value
     })
@@ -68,7 +100,7 @@ Page({
   /**
    * 设置当前id
    */
-  setCurrentId: function(e) {
+  setCurrentId: function (e) {
     var that = this
     var currId = e.currentTarget.dataset.id
     if (that.data.id != currId) {
@@ -100,9 +132,9 @@ Page({
     })
 
     // 保存数据
-    if (that.data.name != "" && that.data.activityIntro != "") {
+    if (that.data.activityname != "" && that.data.activityIntro != "") {
       var currId = that.data.id
-      array[currId].name = that.data.name
+      array[currId].name = that.data.activityname
       array[currId].intro = that.data.activityIntro
       that.setData({
         activities: array
@@ -128,7 +160,7 @@ Page({
   /**
    * 监听开始日期选择器
    */
-  bindBeginDateChange: function(e) {
+  bindBeginDateChange: function (e) {
     var that = this
     var currId = that.data.id
     array[currId].beginDate = e.detail.value
@@ -140,7 +172,7 @@ Page({
   /**
    * 监听开始时间选择器
    */
-  bindBeginTimeChange: function(e) {
+  bindBeginTimeChange: function (e) {
     var that = this
     var currId = that.data.id
     array[currId].beginTime = e.detail.value
@@ -176,23 +208,119 @@ Page({
   /**
    * 点击确定按钮
    */
-  confirm: function() {
+  confirm: function () {
     var that = this;
     // 保存数据
-    if (that.data.name != "" && that.data.activityIntro != "") {
+    if (that.data.activityname != "" && that.data.activityIntro != "") {
       var currId = that.data.id
-      array[currId].name = that.data.name
+      array[currId].name = that.data.activityname
       array[currId].intro = that.data.activityIntro
       that.setData({
         activities: array
       })
     }
 
+    // 将注意事项转换为json字符串
+    var tempArray = that.data.warning.split("\n");
+    var len = tempArray.length;
+    var tempwarning = "[";
+    for (var i = 0; i < len; i++) {
+      tempwarning += "\"" + tempArray[i] + "\""
+      if (i < len-1) {
+        tempwarning += ","
+      }
+    }
+    tempwarning += "]"
+    that.setData({
+      warning: tempwarning
+    })
+
     // 上传数据到服务器
-    that.uploadScenicData();
+    that.uploadSpotData();
+    // console.log("title" + that.data.title);
+    // console.log("brief" + that.data.brief);
+    // console.log("intro" + that.data.intro);
+    console.log("warning" + that.data.warning);
+    // console.log(that.data.activities);
   },
 
-  uploadScenicData: function() {
+  /**
+   * 上传简介数据
+   */
+  uploadSpotData: function() {
+
+    var that = this
+    var gpsLng = 1.0
+    var gpsLat = 1.0
+    // 获取gps定位
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        gpsLng = res.longitude
+        gpsLat = res.latitude
+      },
+    })
+
+    //发送请求
+    wx.request({
+      url: spotUrl + "addSpot",
+      method: 'POST',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        id: 0,
+        gpsLng: gpsLng,
+        gpsLat: gpsLat,
+        name: that.data.title,
+        briefIntro: that.data.brief,
+        bgImg: "../../img/purity.png",
+        category: "scenic"
+      },
+      success: function(res) {
+        // console.log(res.data);
+        var temp = res.data
+        if (that.isRealNum(temp)) {
+          // 获取到刚刚插入记录的id
+          that.setData({
+            spotId: res.data
+          })
+        }
+
+        if (that.data.spotId == 19) {
+          that.responseAddScenic("添加失败");
+        } else {
+          that.uploadImage();
+          that.uploadScenicData();
+          that.responseAddScenic(that.data.resultMessage);
+        }
+      },
+      fail: function(res) {
+        // console.log(res.data);
+        that.responseAddScenic("添加失败");
+      }
+    })
+  },
+
+  /**
+   * 判断是否是数字
+   */
+  isRealNum: function (val) {
+    if (val == "" || val == null) {
+      return false;
+    }
+
+    if (isNaN(val)) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  /**
+   * 上传详细数据
+   */
+  uploadScenicData: function () {
     var that = this
     // 上传景点数据
     wx.request({
@@ -207,17 +335,20 @@ Page({
         warning: that.data.warning,
       },
       success: function (res) {
-        console.log(res.data);
+        // console.log(res.data);
+        
       },
       fail: function (res) {
-        console.log(res.data);
+        // console.log(res.data);
+        // that.responseAddScenic("添加失败");
+        that.data.resultMessage = "添加失败";
       }
     })
     // 上传景点活动
     var len = array.length;
     for (var i = 0; i < len; i++) {
       wx.request({
-        url: "http://localhost:8089/addActivity",
+        url: spotUrl + "addActivity",
         method: 'POST',
         header: {
           "Content-Type": "application/x-www-form-urlencoded"
@@ -231,10 +362,12 @@ Page({
           name: array[i].name
         },
         success: function (res) {
-          console.log(res.data);
+          // console.log(res.data);
+          
         },
         fail: function (res) {
-          console.log(res.data);
+          // console.log(res.data);
+          that.data.resultMessage = "添加失败";
         }
       })
     }
@@ -243,67 +376,77 @@ Page({
   /**
    * 点击取消按钮
    */
-  cancel: function() {
+  cancel: function () {
     wx.navigateBack({
       delta: 1
     })
   },
 
   /**
-   * 生命周期函数--监听页面加载
+    * 添加景点信息事件响应
+    */
+  responseAddScenic: function (result) {
+
+    if (result == "success") {
+      wx.showToast({
+        title: '添加成功',
+        icon: 'success',
+        duration: 3000
+      });
+    } else {
+      wx.showModal({
+        content: result,
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            // console.log('用户点击确定')
+          }
+        }
+      })
+    }
+  },
+
+  /**
+   * 选择图片
    */
-  onLoad: function (options) {
-    this.setData({
-      spotId: options.spotId
+  chooseImage(e) {
+    var _this = this
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],  //可选择原图或压缩后的图片
+      sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
+      success: res => {    
+        _this.setData({
+          src: res.tempFilePaths
+        })
+      },
+      fail: function() {
+        console.log("failed");
+      }
     })
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 上传图片到服务器
    */
-  onReady: function () {
-  
-  },
+  uploadImage: function() {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+    var that = this
+    wx.uploadFile({
+      url: spotUrl + "uploadSpotImage",
+      filePath: that.data.src,
+      name: 'file',
+      formData: {
+        'spotId': that.data.spotId
+      },
+      success: function(res) {
+        // console.log(res.data);
+        
+      },
+      fail: function(res) {
+        // console.log(res.data);
+        that.data.resultMessage = "添加失败";
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

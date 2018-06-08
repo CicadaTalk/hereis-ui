@@ -1,79 +1,139 @@
 /* pages/comment/comment.wxss */
-pages {
+page {
+  height: 100%;
+  width: 100%; 
+  background-color: #f8f8f8;
+}
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/* ====== 内容展示 ======  */
+.comment-wrapper {
   height: 100%;
   width: 100%;
-  background-color: yellowgreen
+  overflow: scroll;
+  margin-top: 10px;
 }
 
-.comment_list {
-  height: auto;
-  padding-top: 80rpx;
+/* ======简介====== */
+.spot-wrapper {
   padding-left: 10px;
-}
-
-.comment_border {
-  border: 1rpx solid gainsboro;
-  border-radius: 3px;
-  box-shadow: 1px 1px 5px gainsboro;
-}
-
-.comment {
-  padding-top: 10px;
   padding-right: 10px;
-  padding-bottom: 10px;
+  padding-top: 3px;
+  position: relative;
+  /* 使wrapper贴合图片 */
+  display: flex;
+  flex-direction: row;
+  background-color: #fdfdfd;
 }
 
-.comment_item {
-  height: auto;
+.image-wrapper>image {
+  height: 140rpx;
+  width: 140rpx;
+  border-radius: 10rpx;
+}
+
+.brief-intro-wrapper {
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.title {
+  color: #000000; /* TODO: 微调 */
+  font-size: 17pt;
+  padding-bottom: 5px;
+}
+
+.brief-intro {
+  color: #888888; /* TODO: 微调 */
+  font-size: 11pt;
+}
+
+/* ====== 评论 ====== */
+
+.comment-list-wrapper {
+  margin-top: 10px;
+}
+
+.comment-item-wrapper {
   padding-left: 10px;
-  padding-top: 10px;
   padding-right: 10px;
+  padding-top: 5px;
   padding-bottom: 10px;
+  background-color: #fdfdfd;
+  margin-top: 2px;
+}
+
+.user-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.headimage {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+}
+
+.user-info-wrapper {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .username {
-  height: 30px;
-  padding-left: 10px;
+  color: #888888;
+  font-size: 10pt;
+  padding-bottom: 3px;
 }
 
 .time {
   width: 100%;
-  
-  /**设置字体大小 使用父元素的百分比作为单位**/
-  font-size: 70%;
+  color: #B2B2B2;  
+  padding-top: 1px;
+  font-size: 7pt;
+}
+
+.comment-content-wrapper {
+  padding-left: 45px;
+  font-size: 12pt;
+}
+
+/* ====== 输入 ====== */
+
+.form-wrapper {
+  box-shadow: -1px -1px 3px darkgrey;
+  margin-top: 5px;
 }
 
 .comment_edit {
-  height: auto;  
-}
-
-.input {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: row-reverse;
+  bottom: 0px;
   padding-left: 10px;
   padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.input-wrapper {
+  width: 80%;
   padding-top: 10px;
-  padding-bottom: 10px;
+  border-color: #878787; 
+  border-style: solid; 
+  border-top-width: 0px;
+  border-right-width: 0px; 
+  border-bottom-width: 1px;
+  border-left-width: 0px;
 }
 
-.input_border {
-  border: 1rpx solid lightgray;
-  border-radius: 10px;
-}
-
-.input_content {
-  width: 100%;
-  
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.button {
-  background-color: rgba(224, 224, 224, 0.5);
-  font-size: 80%;
-}
-
-.headimage {
-  height: 30px;
-  width: 30px;
+.btn {
+  width: 20%;
+  font-size: 12pt;
 }

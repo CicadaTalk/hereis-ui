@@ -12,18 +12,18 @@ Page({
       longitude: 113.324520,
       width: 50,
       height: 50
-    }],
-    controls: [{
-      id: 1,
-      iconPath: '/image/add_button.png',
-      position: {
-        left: 10,
-        top: 10,
-        width: 30,
-        height: 30
-      },
-      clickable: true
     }]
+    // controls: [{
+    //   id: 1,
+    //   iconPath: '/image/add.png',
+    //   position: {
+    //     left: wx.getSystemInfoSync().windowWidth - 50,
+    //     top: wx.getSystemInfoSync().windowHeight - 30 - 20,
+    //     width: 40,
+    //     height: 40
+    //   },
+    //   clickable: true
+    // }]
   },
   onLoad() {
     var that = this
@@ -66,18 +66,24 @@ Page({
     })
 
   },
+
   regionchange(e) {
     console.log(e.type)
   },
+
   markertap(e) {
     console.log(e.markerId)
   },
+
+  /**
+   * 打开录入选择界面
+   */
   controltap(e) {
     wx.navigateTo({
-      url: '../input/input',
+      url: '../select/select',
       success: function (res) { },
       fail: function (res) { },
       complete: function (res) { },
     })
-  }
+  }, 
 })

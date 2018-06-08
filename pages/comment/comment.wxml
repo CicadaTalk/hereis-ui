@@ -1,46 +1,54 @@
 <!--pages/comment/comment.wxml-->
-<view class='pages'>
-  <form bindsubmit='formSubmit'>
-    <view class='comment_edit'>
-      <view class='input'>
-      <view class='input_border'>
-      <view class='input_content'>
-      <textarea bindblur='bindTextAreaBlur' placeholder='请输入评论内容'></textarea>
-      </view>
-      <view class='button'><button form-type='submit'open-type="getUserInfo" bindgetuserinfo="formSubmit">留言</button></view>
-      </view>
-      </view>
-      
-    </view>
-  </form>
-  <view class='comment_list' style="height: 400px;">
-    <text>评论</text>
-    <block wx:for-items="{{comments}}" wx:key="{{comments.commentId}}">
-      <view class='comment'>
-      <view class='comment_border'>
-      <view class='comment_item'>
-        <view>
-          <image class='headimage' src="{{item.imagePath}}"></image>
-          <text class='username'>{{item.name}}</text>
-        </view>
-        <view>
-          <text>{{item.comment}}</text>
-        </view>
-        <view>
-          <text class='time'>{{item.time}}</text>
+<view class='wrapper'>
+  <view class='form-wrapper'>
+    <form bindsubmit='formSubmit'>
+      <view class='comment_edit'>
+        <button 
+          class= "btn"
+          type='primary'
+          bindtap='submit'
+        ><text>发送</text></button> 
+        <view class='input-wrapper'>
+          <input 
+            placeholder-style='font-size: 12pt;'
+            placeholder='我来说两句'
+          />
         </view>
       </view>
-      </view>
-      </view>
-    </block>
+    </form>
   </view>
-  <view class='comment_edit'>
-    <!-- <form bindsubmit='bindFormSubmit'>
-    <textarea class='input' placeholder='textarea' name='comment' number='500'></textarea>
-    <button class='button' form-type='submit'>发送</button>
-  </form> -->
+  <view class='comment-wrapper'>
+    <scroll-view scroll-y='true' style='width: 100%; height: 100%;'>
+      <view class='spot-wrapper'>
+        <view class='image-wrapper'>
+          <image
+            mode='aspectFill'
+            src='{{spotImg}}'
+          ></image>
+        </view>
+        <view class='brief-intro-wrapper'>
+          <view class='brief-intro-content-wrapper'>
+            <view class='title'>{{spotName}}</view>
+            <view class='brief-intro'>{{spotBriefIntro}}</view>
+          </view>
+        </view> 
+      </view>
+      <view class='comment-list-wrapper'>
+        <block wx:for-items="{{comments}}" wx:key="{{comments.commentId}}">
+          <view class='comment-item-wrapper'>
+            <view class='user-wrapper'>
+              <view class='headimage-wrapper'>
+                <image class='headimage' src="{{item.imagePath}}"></image>
+              </view>
+              <view class='user-info-wrapper'>
+                <view class='username'>{{item.name}}</view>
+                <view class='time'>{{item.time}}</view>
+              </view>
+            </view>
+            <view class="comment-content-wrapper">{{item.comment}}</view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
   </view>
-
-  <!-- <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
-<view wx:else>请升级微信版本</view> -->
 </view>

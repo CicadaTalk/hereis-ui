@@ -1,0 +1,8 @@
+<!--pages/select/select.wxml-->
+<view>
+<image src='../../image/select.jpg' style='width: 100%;'></image>
+</view>
+<view class='wrapper'>
+<button bindtap='openscenic' type='primary' style='margin-top: 10px;'>记录景点</button>
+<button bindtap='openrestaurant' type='primary' style='margin-top: 10px;'>记录餐馆</button>
+</view>
