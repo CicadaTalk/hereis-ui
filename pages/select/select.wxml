@@ -1,13 +1,13 @@
 <!--pages/select/select.wxml-->
 <view class='select'>
-<image bindtap='openscenic' src='../../image/scenic.jpg' style='width: 100%;'></image>
+<image mode='aspectFill' bindtap='openscenic' src='../../image/scenic.jpg' style='width: 100%;'></image>
 <view class='select-item'><text>录入景点</text></view>
 </view>
 <view class='select'>
-<image bindtap='openrestaurant' src='../../image/restaurant.jpg' style='width: 100%;'></image>
+<image mode='aspectFill' bindtap='openrestaurant' src='../../image/restaurant.jpg' style='width: 100%;'></image>
 <view class='select-item'><text>录入餐馆</text></view>
 </view>
 <view class='select'>
-<image src='../../image/bookstore.jpg' style='width: 100%;'></image>
+<image mode='aspectFill' src='../../image/bookstore.jpg' style='width: 100%;'></image>
 <view class='select-item'><text>待开放</text></view>
 </view>

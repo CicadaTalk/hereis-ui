@@ -1,7 +1,6 @@
 /* pages/intro/intro.wxss */
 
 @import "../scenicdetail/scenicdetail.wxss";
-@import "../restaurant/restaurant.wxss"; 
 
 page {
   width: 100%;
@@ -26,7 +25,6 @@ page {
 .content-wrapper {
   width: 100%;
   height: 100%;
-  overflow: scroll;
 }
 
 /* ======背景====== */
@@ -36,6 +34,7 @@ page {
   position: relative;
   /* 固定背景图片 */
   z-index: 10;
+  overflow-x: hidden;
 }
 
 /* ======简介====== */

@@ -34,6 +34,7 @@ Page({
    * 监听Swiper滑动
    */
   swiperChange(e) {
+    console.log(e);
     this.setData({
       curr_I: e.detail.current
     })
@@ -61,7 +62,7 @@ Page({
     var begin_Y = this.data.touchPos;
     var end_Y = e.touches[0].pageY;
     if (!this.data.mapLock) {
-      if ( begin_Y - end_Y < -50) {
+      if ( begin_Y - end_Y < -150) {
         if (this.data.touchOffset == 0) {
           this.setData({mapLock: true});
           this.openMap()
