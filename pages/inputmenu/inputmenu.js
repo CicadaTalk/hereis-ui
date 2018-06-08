@@ -4,7 +4,7 @@ var array = [
     category: "",
     name:"",
     price: 0.0,
-    imgPath: "../../img/2.jpg"
+    imgPath: "../../image/2.jpg"
   }
 ];
 
@@ -25,12 +25,12 @@ Page({
         category: "",
         name: "",
         price: null,
-        imgPath: "../../img/2.jpg"
+        imgPath: "../../image/2.jpg"
       }
     ],
 
     // 设置默认图片
-    src: "../../image/2.jpg",
+    src: "../../image/restaurant.jpg",
     // 设置spottId初始值
     spotId: 19,
 
@@ -121,7 +121,7 @@ Page({
     menu.category = "";
     menu.name = "";
     menu.price = null;
-    menu.imgPath = "../../img/2.jpg";
+    menu.imgPath = "../../image/2.jpg";
     array.push(menu);
     that.setData({
       menus: array
@@ -172,7 +172,7 @@ Page({
 
     // console.log("title" + that.data.title);
     // console.log("brief" + that.data.brief);
-    // console.log(that.data.menus);
+    console.log(that.data.menus);
     // 上传简介数据
     that.uploadSpotData();
   },
@@ -217,46 +217,30 @@ Page({
         name: that.data.title,
         briefIntro: that.data.brief,
         bgImg: that.data.src,
-        category: "scenic"
+        category: "restaurant"
       },
       success: function (res) {
-        // console.log(res.data);
-        if (that.isRealNum(res.data)) {
-          // 获取到刚刚插入记录的id
-          that.setData({
-            spotId: res.data
-          })
-        }
+        console.log(res.data);
+          
+        // 获取到刚刚插入记录的id
+        that.setData({
+          spotId: parseInt(res.data)
+        })
 
         if (that.data.spotId == 19) {
-          that.responseAddRestaurant("添加失败");
+          that.responseAddRestaurant("添加餐馆失败");
         } else {
-          that.uploadImage(that.data.src, res.data);
+          that.uploadBGImage(that.data.src, that.data.spotId);
           // 上传详细数据到服务器
           that.uploadMenuData();
           that.responseAddRestaurant(that.data.resultMessage);
         }
       },
       fail: function (res) {
-        that.responseAddRestaurant("添加失败");
+        that.responseAddRestaurant("添加餐馆失败");
         // console.log(res.data);
       }
     })
-  },
-
-  /**
-   * 判断是否是数字
-   */
-  isRealNum: function (val) {
-    if (val == "" || val == null) {
-      return false;
-    }
-
-    if (isNaN(val)) {
-      return true;
-    } else {
-      return false;
-    }
   },
 
   /**
@@ -284,12 +268,14 @@ Page({
           spotId: parseInt(that.data.spotId)
         },
         success: function (res) {
-          that.uploadImage(path, res.data);
+          console.log(res.data)
+          var menuId = parseInt(res.data)
+          that.uploadMenuImage(path, menuId)
           // console.log(res.data);
         },
         fail: function (res) {
           // console.log(res.data);
-          that.data.resultMessage = "添加失败";
+          that.data.resultMessage = "添加菜品失败";
         }
       })
     }
@@ -330,7 +316,7 @@ Page({
       sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
       success: res => {
         _this.setData({
-          src: res.tempFilePaths
+          src: res.tempFilePaths[0]
         })
       },
       fail: function () {
@@ -350,9 +336,9 @@ Page({
       sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
       success: res => {
         var currId = that.data.id
-        array[currId].imgPath = res.tempFilePaths
+        array[currId].imgPath = res.tempFilePaths[0]
         that.setData({
-            s: array
+            menus: array
         })
       },
       fail: function () {
@@ -364,9 +350,12 @@ Page({
   /**
   * 上传背景图片到服务器
   */
-  uploadImage: function (path, id) {
+  uploadBGImage: function (path, id) {
 
     var that = this
+    if ("../../image/restaurant.jpg" == path) {
+      return;
+    }
     wx.uploadFile({
       url: menuUrl + "uploadSpotImage",
       filePath: path,
@@ -379,7 +368,33 @@ Page({
       },
       fail: function (res) {
         // console.log(res.data);
-        that.data.resultMessage = "添加失败";
+        that.data.resultMessage = "上传背景图片失败";
+      }
+    })
+  },
+
+  /**
+   * 上传菜单图片到服务器
+   */
+  uploadMenuImage: function (path, id) {
+
+    var that = this
+    if ("../../image/2.jpg" == path) {
+      return
+    }
+    wx.uploadFile({
+      url: menuUrl + "uploadMenuImage",
+      filePath: path,
+      name: 'file',
+      formData: {
+        'menuId': id
+      },
+      success: function (res) {
+        // console.log(res.data);
+      },
+      fail: function (res) {
+        // console.log(res.data);
+        that.data.resultMessage = "上传菜单图片失败";
       }
     })
   },

@@ -48,7 +48,6 @@ page {
 .title {
   color: #FFF; /* TODO: 微调 */
   font-size: 17pt;
-  width: 60%;
 }
 
 .title > input {
@@ -64,7 +63,7 @@ page {
 .brief-intro {
   color: #EEE; /* TODO: 微调 */
   font-size: 11pt;
-  width: 80%;
+  width: 90%;
   margin-top: 5px;
   margin-right: 20px;
 }

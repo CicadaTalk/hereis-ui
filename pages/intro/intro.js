@@ -87,7 +87,8 @@ Page({
         var spots = res.data;
         for (var i = 0; i < spots.length; i++) {
           spots[i]["ready"] = false;
-          spots[i].bgImg = domainURL + "images/" + spots[i].bgImg;
+          // spots[i].bgImg = domainURL + "images/" + spots[i].bgImg;
+          spots[i].bgImg = spots[i].bgImg;
         }
         self.setData({
           spots: spots
@@ -225,7 +226,9 @@ Page({
     // this.getSpot(103.800433, 30.944567, 0.1);
     // 餐馆
     // this.getSpot(104.104005, 30.681519, 0.015);
-    this.getSpot(104.26884, 30.557151, 0.01);
+    // this.getSpot(104.26884, 30.557151, 0.01);
+
+    this.getSpot(104.006506, 30.560417, 0.01);
   },
 
   /**

@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/intro/intro",
-    "pages/map/map",
     "pages/inputscenic/inputscenic",
     "pages/inputmenu/inputmenu",
+    "pages/map/map",
     "pages/comment/comment",
     "pages/input/input",
     "pages/sb/sb",

@@ -1,8 +1,25 @@
 .pages {
   height: 100%;
   width: 100%;
+  background-color: #f8f8f8;
 }
 
-.wrapper {
-  padding: 5px;
+.select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  font-family: cursive;
+  margin-top: 10px;
+}
+
+.select-item {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 10px;
+  font-size: 20pt;
+  color: white;
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.5));
 }

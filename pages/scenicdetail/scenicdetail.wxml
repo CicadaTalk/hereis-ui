@@ -76,7 +76,9 @@
         <view class='detailTitle'>
           <text>提醒\n\n</text>
         </view>
-        <text decode='true'>&nbsp;&nbsp;{{warning}}</text>
+        <block wx:for="{{warning}}">
+          <view style='padding-bottom:10px;'>{{item}}</view>
+        </block>
       </view>
     </view>
   </view>
