@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "zan-row": "../../style/zanui/row/index",
-    "zan-col": "../../style/zanui/col/index",
-    "zan-panel": "../../style/zanui/panel/index",
-    "zan-popup": "../../style/zanui/popup/index"
-  },
-  "navigationBarTitleText": "详情"
-}

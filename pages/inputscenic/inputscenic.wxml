@@ -1,5 +1,5 @@
 <!--pages/intro/intro.wxml-->
-<scroll-view class='content-wrapper' scroll-y="true">
+<view class='content-wrapper'>
   <view style='width:100%; height:100%;'>
     <view class='background-wrapper'>
       <image style='height: {{bg_H}}px; width: 100%;' src='{{bg_Img}}' bindtap="chooseImage"></image>
@@ -90,4 +90,4 @@
       </view>
     </view>
   </view>
-</scroll-view>
+</view>

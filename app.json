@@ -1,12 +1,10 @@
 {
   "pages": [
     "pages/intro/intro",
-    "pages/inputscenic/inputscenic",
     "pages/inputmenu/inputmenu",
+    "pages/inputscenic/inputscenic",
     "pages/map/map",
     "pages/comment/comment",
-    "pages/input/input",
-    "pages/sb/sb",
     "pages/restaurant/restaurant",
     "pages/select/select",
     "pages/scenicdetail/scenicdetail"

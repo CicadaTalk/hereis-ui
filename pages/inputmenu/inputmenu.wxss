@@ -1,6 +1,5 @@
 /* pages/intro/intro.wxss */
 
-@import "../scenicdetail/scenicdetail.wxss";
 @import "../restaurant/restaurant.wxss"; 
 
 page {
