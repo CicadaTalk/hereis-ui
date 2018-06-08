@@ -3,7 +3,7 @@
     <image style='height: {{bg_H}}px; width: 100%;' src='{{src}}'></image>
     <view class='brief-intro-wrapper'>
       <view class='brief-intro-content-wrapper'>
-        <view class='title'>
+        <view class='title' style='width: 200px;'>
           <input 
             placeholder='标题'
             placeholder-class='title-input'

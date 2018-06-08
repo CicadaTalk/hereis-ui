@@ -13,9 +13,9 @@ Page({
     bg_Img: "../../image/scenic.jpg",
 
     // 设置默认图片
-    src: "../../img/purity.png",
+    // src: "../../img/purity.png",
     // 设置spottId初始值
-    spotId: 19,
+    spotId: 0,
     
     activities: [],
 
@@ -278,17 +278,13 @@ Page({
         category: "scenic"
       },
       success: function(res) {
-        // console.log(res.data);
-        var temp = res.data
-        if (that.isRealNum(temp)) {
-          // 获取到刚刚插入记录的id
-          that.setData({
-            spotId: res.data
-          })
-        }
+        console.log(res.data);
+        that.setData({
+          spotId: parseInt(res.data)
+        })
 
-        if (that.data.spotId == 19) {
-          that.responseAddScenic("添加失败");
+        if (that.data.spotId == 0) {
+          that.responseAddScenic("返回数据错误");
         } else {
           that.uploadImage();
           that.uploadScenicData();
@@ -297,24 +293,9 @@ Page({
       },
       fail: function(res) {
         // console.log(res.data);
-        that.responseAddScenic("添加失败");
+        that.responseAddScenic("添加景点失败");
       }
     })
-  },
-
-  /**
-   * 判断是否是数字
-   */
-  isRealNum: function (val) {
-    if (val == "" || val == null) {
-      return false;
-    }
-
-    if (isNaN(val)) {
-      return true;
-    } else {
-      return false;
-    }
   },
 
   /**
@@ -324,7 +305,7 @@ Page({
     var that = this
     // 上传景点数据
     wx.request({
-      url: "http://localhost:8089/addScenicSpot",
+      url: spotUrl + "addScenicSpot",
       method: 'POST',
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
@@ -336,12 +317,11 @@ Page({
       },
       success: function (res) {
         // console.log(res.data);
-        
       },
       fail: function (res) {
         // console.log(res.data);
         // that.responseAddScenic("添加失败");
-        that.data.resultMessage = "添加失败";
+        that.data.resultMessage = "上传景点详细信息失败";
       }
     })
     // 上传景点活动
@@ -367,7 +347,7 @@ Page({
         },
         fail: function (res) {
           // console.log(res.data);
-          that.data.resultMessage = "添加失败";
+          that.data.resultMessage = "上传活动失败";
         }
       })
     }
@@ -417,7 +397,7 @@ Page({
       sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
       success: res => {    
         _this.setData({
-          src: res.tempFilePaths
+          bg_Img: res.tempFilePaths[0]
         })
       },
       fail: function() {
@@ -432,9 +412,13 @@ Page({
   uploadImage: function() {
 
     var that = this
+    if ("../../image/scenic.jpg" == that.data.bg_Img) {
+      return
+    }
+
     wx.uploadFile({
       url: spotUrl + "uploadSpotImage",
-      filePath: that.data.src,
+      filePath: that.data.bg_Img,
       name: 'file',
       formData: {
         'spotId': that.data.spotId
@@ -445,7 +429,7 @@ Page({
       },
       fail: function(res) {
         // console.log(res.data);
-        that.data.resultMessage = "添加失败";
+        that.data.resultMessage = "上传图片失败";
       }
     })
   },
