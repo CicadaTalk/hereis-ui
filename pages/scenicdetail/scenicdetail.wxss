@@ -70,11 +70,3 @@
   padding-top: 5px;
   padding-bottom: 5px;
 }
-
-.button {
-  height: auto;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  border-radius: 20px;
-}

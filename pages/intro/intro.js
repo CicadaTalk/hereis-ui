@@ -1,7 +1,7 @@
 // pages/intro/intro.js
 
 var util = require('../../utils/util.js');
-const domainURL = "http://127.0.0.1:8089/"
+const domainURL = "https://lazyZhou.xin/"
 const getSpotURL = domainURL + "getSpotsByGPS"
 const getScenicSpotURL = domainURL + "getScenicSpotById"
 const getRestaurantURL = domainURL + "getMenuBySpotId"
@@ -19,7 +19,7 @@ Page({
     // 背景宽度(无需设置)
     bg_W: 0,
     // 背景高度
-    bg_H: 210,
+    bg_H: wx.getSystemInfoSync().windowWidth / 710 * 360,
     // 透明度(动画用)
     bf_O: 0,
     // swiper ID
@@ -172,6 +172,15 @@ Page({
   openComment: function (e) {
     var spotIndex = this.data.curr_I;
     var spots = this.data.spots;
+    wx.setStorage({
+      key: 'commentInfo',
+      data: {
+        spotImg: spots[spotIndex].bgImg,
+        spotName: spots[spotIndex].name,
+        spotBriefIntro: spots[spotIndex].briefIntro
+      },
+    })
+
     wx.navigateTo({
       url: '../comment/comment?spotId=' + spots[spotIndex].id,
     })

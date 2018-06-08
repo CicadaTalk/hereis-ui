@@ -30,7 +30,7 @@
 
 .menu_content {
   padding-left: 20px;
-  line-height: 25px; 
+  line-height: 20px; 
 }
 
 .menu-title {
@@ -48,13 +48,13 @@
 }
 
 .menu_image {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
    border-radius:50%;  
   overflow:hidden;
 }
 
 .menu_image>image {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }

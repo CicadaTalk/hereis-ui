@@ -2,13 +2,14 @@
   "pages": [
     "pages/intro/intro",
     "pages/map/map",
-    "pages/input/input",
-    "pages/inputmenu/inputmenu",
     "pages/inputscenic/inputscenic",
+    "pages/inputmenu/inputmenu",
+    "pages/comment/comment",
+    "pages/input/input",
     "pages/sb/sb",
     "pages/restaurant/restaurant",
-    "pages/scenicdetail/scenicdetail",
-    "pages/comment/comment"
+    "pages/select/select",
+    "pages/scenicdetail/scenicdetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

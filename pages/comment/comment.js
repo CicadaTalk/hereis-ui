@@ -5,15 +5,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    comment_upload: ''
+    comment_upload: '',
+
+    windowHeight: wx.getSystemInfoSync().windowHeight - 80,
+
+    // 背景高度
+    bgImg: "",
+    name: "",
+    briefIntro: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var self = this;
     this.getCommentList(options.spotId);
+    wx.getStorage({
+      key: 'commentInfo',
+      success: function(res) {
+        self.setData({
+          spotImg: res.data.spotImg,
+          spotName: res.data.spotName,
+          spotBriefIntro: res.data.spotBriefIntro
+        })
+      },
+    })
     //将景点信息保存到全局变量中
     this.setData({
       spotId: options.spotId
@@ -27,7 +44,7 @@ Page({
   getCommentList: function (spotId) {
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1:8089/getCommentsById',
+      url: 'https://lazyzhou.xin/getCommentsById',
       data: { spotId: spotId },
       method: 'GET',
       header: {
@@ -64,16 +81,16 @@ Page({
 
   //上传评论到服务器
   formSubmit: function (e) {
-    console.log(this.data.comment_upload);
-
-    console.log(e.detail.userInfo)
-
-    if (this.data.comment_upload == "") {
-      console.log("输入内容为空")
-      return
-    }
 
     var that = this
+    // console.log(this.data.comment_upload);
+    // that.responseAddComment("succes")
+    // console.log(e.detail.userInfo)
+
+    if (this.data.comment_upload == "") {
+      // console.log("输入内容为空")
+      return
+    }
 
     wx.login({
       success: function (res) {
@@ -93,42 +110,46 @@ Page({
               avatarUrl: e.detail.userInfo.avatarUrl
             },
             success: function (res) {
-              console.log(res.data);
-
-              //重新获取评论信息
-              that.getCommentList(that.data.spotId)
-              //that.processData(res.data)
+              // console.log(res.data);
+              that.responseAddComment(res.data)
             },
             fail: function (err) {
               console.log(err);
             }
           })
         } else {
-          console.log('评论失败！' + res.errMsg)
+          // console.log('评论失败！' + res.errMsg)
+          that.responseAddComment("登录失败");
         }
       }
     });
+  },
 
-    // //上传评论到服务器
-    // wx.request({
-    //   url: 'http://localhost:8089/addComment',
-    //   method: 'POST',
-    //   data: {
-    //     content: this.data.comment_upload,
-    //     spotId: this.data.spotId
-    //   },
-    //   header: {
-    //     "content-type": "json"
-    //   },
-    //   success: function (res) {
-    //     console.log(res.data);
-    //     //that.processData(res.data)
-    //   },
-    //   fail: function (err) {
-    //     console.log(err);
-    //   }
-    // })
+  /**
+    * 添加评论事件响应
+    */
+  responseAddComment: function (result) {
 
+    if (result == "success") {
+      wx.showToast({
+        title: '评论成功',
+        icon: 'success',
+        duration: 3000
+      });
+      //重新获取评论信息
+      that.getCommentList(that.data.spotId)
+    } else {
+      wx.showModal({
+
+        content: result,
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            // console.log('用户点击确定')
+          }
+        }
+      })
+    }
   },
 
   /**
