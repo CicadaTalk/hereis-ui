@@ -34,42 +34,41 @@ Page({
    * 监听Swiper滑动
    */
   swiperChange(e) {
-    console.log(e);
     this.setData({
       curr_I: e.detail.current
     })
   },
 
-  touchStart(e) {
-    var self = this;
-    var query = wx.createSelectorQuery();
-    var spots = this.data.spots;
-    var spotIndex = this.data.curr_I;
-    console.log(spotIndex);
-    var id = "#ruler" + spots[spotIndex].id;
-    query.select(id).boundingClientRect()
-    query.exec(function (res) {
-      console.log(res);
-      var top = res[0].top;
-      self.setData({
-        touchPos: e.touches[0].pageY,
-        touchOffset: top
-      });
-    })
-  },
+  // touchStart(e) {
+  //   var self = this;
+  //   var query = wx.createSelectorQuery();
+  //   var spots = this.data.spots;
+  //   var spotIndex = this.data.curr_I;
+  //   console.log(spotIndex);
+  //   var id = "#ruler" + spots[spotIndex].id;
+  //   query.select(id).boundingClientRect()
+  //   query.exec(function (res) {
+  //     console.log(res);
+  //     var top = res[0].top;
+  //     self.setData({
+  //       touchPos: e.touches[0].pageY,
+  //       touchOffset: top
+  //     });
+  //   })
+  // },
 
-  touchMove(e) {
-    var begin_Y = this.data.touchPos;
-    var end_Y = e.touches[0].pageY;
-    if (!this.data.mapLock) {
-      if ( begin_Y - end_Y < -150) {
-        if (this.data.touchOffset == 0) {
-          this.setData({mapLock: true});
-          this.openMap()
-        }
-      }
-    }
-  },
+  // touchMove(e) {
+  //   var begin_Y = this.data.touchPos;
+  //   var end_Y = e.touches[0].pageY;
+  //   if (!this.data.mapLock) {
+  //     if ( begin_Y - end_Y < -50) {
+  //       if (this.data.touchOffset == 0) {
+  //         this.setData({mapLock: true});
+  //         this.openMap()
+  //       }
+  //     }
+  //   }
+  // },
 
   /**
    * Spot信息获取
