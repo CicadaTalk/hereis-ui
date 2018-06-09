@@ -107,7 +107,7 @@ Page({
       this.setData({
         id: e.currentTarget.dataset.id
       })
-      console.log(e.currentTarget.dataset.id);
+      // console.log(e.currentTarget.dataset.id);
     }
   },
 
@@ -117,7 +117,7 @@ Page({
   addActivity(e) {
     var that = this
     var len = that.data.activities.length
-    console.log(len);
+    // console.log(len);
     var activity = {}
     activity.id = len;
     activity.name = "";
@@ -232,7 +232,7 @@ Page({
     // console.log("title" + that.data.title);
     // console.log("brief" + that.data.brief);
     // console.log("intro" + that.data.intro);
-    console.log("warning" + that.data.warning);
+    // console.log("warning" + that.data.warning);
     // console.log(that.data.activities);
   },
 
@@ -248,7 +248,7 @@ Page({
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
-        console.log(res)
+        // console.log(res)
         gpsLng = res.longitude
         gpsLat = res.latitude
 
@@ -269,7 +269,7 @@ Page({
             category: "scenic"
           },
           success: function (res) {
-            console.log(res.data);
+            // console.log(res.data);
             that.setData({
               spotId: parseInt(res.data)
             })
@@ -297,6 +297,8 @@ Page({
    */
   uploadScenicData: function () {
     var that = this
+    // console.log("上传景点数据")
+    // console.log(that.data.spotId + " " + that.data.intro + " " + that.data.warning)
     // 上传景点数据
     wx.request({
       url: spotUrl + "addScenicSpot",
@@ -321,6 +323,8 @@ Page({
     // 上传景点活动
     var len = array.length;
     for (var i = 0; i < len; i++) {
+      // console.log("上传景点活动" + i)
+      // console.log(array[i])
       wx.request({
         url: spotUrl + "addActivity",
         method: 'POST',
@@ -331,8 +335,8 @@ Page({
           id: 0,
           spotId: parseInt(that.data.spotId),
           intro: array[i].intro,
-          endTime: array[i].endDate + " " + array[i].endTime,
-          beginTime: array[i].beginDate + " " + array[i].beginTime,
+          endTime: array[i].endTime,
+          beginTime: array[i].beginTime,
           name: array[i].name
         },
         success: function (res) {
@@ -399,7 +403,7 @@ Page({
         })
       },
       fail: function() {
-        console.log("failed");
+        // console.log("failed");
       }
     })
   },
