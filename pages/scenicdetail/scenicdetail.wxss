@@ -5,7 +5,7 @@
   /* 设置间隔 */
   margin-top: 10px;
   /* 设置字体  */
-  font-family: cursive;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 17px;
 }
 
@@ -54,11 +54,18 @@
   padding-bottom: 5px;
 }
 
+.time-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .time {
-  position: relative;
-  left:45%;
+  /* position: relative; */
+  /* left:65%; */
+  justify-content: flex-end;
   /**设置字体大小 使用父元素的百分比作为单位**/
   font-size: 70%;
+  color: #888888;
 }
 
 .warning_content {

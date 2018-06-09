@@ -122,9 +122,7 @@ Page({
     activity.id = len;
     activity.name = "";
     activity.intro = "";
-    activity.endDate = "2018-01-01";
     activity.endTime = "17:00";
-    activity.beginDate = "2018-01-01";
     activity.beginTime = "12:00";
     array.push(activity)
     that.setData({
@@ -158,36 +156,12 @@ Page({
   },
 
   /**
-   * 监听开始日期选择器
-   */
-  bindBeginDateChange: function (e) {
-    var that = this
-    var currId = that.data.id
-    array[currId].beginDate = e.detail.value
-    that.setData({
-      activities: array
-    })
-  },
-
-  /**
    * 监听开始时间选择器
    */
   bindBeginTimeChange: function (e) {
     var that = this
     var currId = that.data.id
     array[currId].beginTime = e.detail.value
-    that.setData({
-      activities: array
-    })
-  },
-
-  /**
-   * 监听结束日期选择器
-   */
-  bindEndDateChange: function (e) {
-    var that = this
-    var currId = that.data.id
-    array[currId].endDate = e.detail.value
     that.setData({
       activities: array
     })
@@ -218,6 +192,24 @@ Page({
       that.setData({
         activities: array
       })
+    }
+
+    if ("../../image/scenic.jpg" == that.data.bg_Img) {
+      that.responseAddScenic("请选择图片")
+      return
+    }
+
+    if (that.data.title == "" || that.data.brief == "" || that.data.intro == "" || that.data.warning == "") {
+      that.responseAddScenic("请填写完整信息")
+      return
+    }
+
+    var len = array.length
+    for (var i = 0; i < len; i++) {
+      if (array[i].name == "" || array[i].intro == "") {
+        that.responseAddScenic("请填写完整信息");
+        return
+      }
     }
 
     // 将注意事项转换为json字符串
@@ -254,48 +246,50 @@ Page({
     var gpsLat = 1.0
     // 获取gps定位
     wx.getLocation({
-      type: 'wgs84',
+      type: 'gcj02',
       success: function (res) {
+        console.log(res)
         gpsLng = res.longitude
         gpsLat = res.latitude
-      },
-    })
 
-    //发送请求
-    wx.request({
-      url: spotUrl + "addSpot",
-      method: 'POST',
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      data: {
-        id: 0,
-        gpsLng: gpsLng,
-        gpsLat: gpsLat,
-        name: that.data.title,
-        briefIntro: that.data.brief,
-        bgImg: "../../img/purity.png",
-        category: "scenic"
-      },
-      success: function(res) {
-        console.log(res.data);
-        that.setData({
-          spotId: parseInt(res.data)
+        //发送请求
+        wx.request({
+          url: spotUrl + "addSpot",
+          method: 'POST',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          data: {
+            id: 0,
+            gpsLng: gpsLng,
+            gpsLat: gpsLat,
+            name: that.data.title,
+            briefIntro: that.data.brief,
+            bgImg: "../../image/scenic.jpg",
+            category: "scenic"
+          },
+          success: function (res) {
+            console.log(res.data);
+            that.setData({
+              spotId: parseInt(res.data)
+            })
+
+            if (that.data.spotId == 0) {
+              that.responseAddScenic("返回数据错误");
+            } else {
+              that.uploadImage();
+              that.uploadScenicData();
+              that.responseAddScenic(that.data.resultMessage);
+            }
+          },
+          fail: function (res) {
+            // console.log(res.data);
+            that.responseAddScenic("添加景点失败");
+          }
         })
-
-        if (that.data.spotId == 0) {
-          that.responseAddScenic("返回数据错误");
-        } else {
-          that.uploadImage();
-          that.uploadScenicData();
-          that.responseAddScenic(that.data.resultMessage);
-        }
       },
-      fail: function(res) {
-        // console.log(res.data);
-        that.responseAddScenic("添加景点失败");
-      }
     })
+
   },
 
   /**
@@ -373,6 +367,10 @@ Page({
         icon: 'success',
         duration: 3000
       });
+      // 跳转首页
+      wx.reLaunch({
+        url: '../intro/intro',
+      })
     } else {
       wx.showModal({
         content: result,
@@ -412,9 +410,6 @@ Page({
   uploadImage: function() {
 
     var that = this
-    if ("../../image/scenic.jpg" == that.data.bg_Img) {
-      return
-    }
 
     wx.uploadFile({
       url: spotUrl + "uploadSpotImage",
