@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    comment_upload: '',
+    inputData: '',
 
     windowHeight: wx.getSystemInfoSync().windowHeight - 80,
 
@@ -83,11 +83,10 @@ Page({
   formSubmit: function (e) {
 
     var that = this
-    // console.log(this.data.comment_upload);
     // that.responseAddComment("succes")
     // console.log(e.detail.userInfo)
 
-    if (this.data.comment_upload == "") {
+    if (e.detail.value.comment == "") {
       // console.log("输入内容为空")
       return
     }
@@ -104,10 +103,10 @@ Page({
             method: "POST",
             data: {
               code: res.code,
-              content: that.data.comment_upload,
+              content: e.detail.value.comment,
               spotId: that.data.spotId,
-              nickName: e.detail.userInfo.nickName,
-              avatarUrl: e.detail.userInfo.avatarUrl
+              nickName: that.data.nickName,
+              avatarUrl: that.data.avatarUrl
             },
             success: function (res) {
               // console.log(res.data);
@@ -137,7 +136,10 @@ Page({
         duration: 3000
       });
       //重新获取评论信息
-      that.getCommentList(that.data.spotId)
+      this.getCommentList(this.data.spotId)
+      this.setData({
+        inputData:""
+      })
     } else {
       wx.showModal({
 
@@ -201,8 +203,14 @@ Page({
 
   },
 
-  // bindGetUserInfo: function (e) {
-  //   console.log(this.data.comment_upload)
-  //   console.log(e.detail.userInfo)
-  // }
+
+  /**
+   * 获取用户信息
+   */
+  bindGetUserInfo: function (e) {
+    this.setData({
+      nickName: e.detail.userInfo.nickName,
+      avatarUrl: e.detail.userInfo.avatarUrl
+    })
+  }
 })

@@ -6,12 +6,16 @@
         <button 
           class= "btn"
           type='primary'
-          bindtap='submit'
+          form-type='submit'
+          open-type='getUserInfo'
+          bindgetuserinfo='bindGetUserInfo'
         ><text>发送</text></button> 
         <view class='input-wrapper'>
           <input 
+            name='comment'
             placeholder-style='font-size: 12pt;'
             placeholder='我来说两句'
+            value='{{inputData}}'
           />
         </view>
       </view>

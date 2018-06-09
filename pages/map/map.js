@@ -5,6 +5,8 @@ Page({
   data: {
     latitude: 30.560417,
     longitude: 104.006506,
+    // latitude: 30.674137,
+    // longitude: 104.044691,
     markers: [{
       iconPath: "/image/location.png",
       id: 0,

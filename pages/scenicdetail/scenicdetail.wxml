@@ -21,8 +21,8 @@
             <view>
               <text decode='true'>&nbsp;&nbsp;{{item.intro}}</text>
             </view>
-            <view>
-              <text class='time'>{{item.beginTime}}-{{item.endTime}}</text>
+            <view class='time-wrapper'>
+              <text>{{item.beginTime}}-{{item.endTime}}</text>
             </view>
           </view>
         </view>
@@ -63,8 +63,8 @@
             <view>
               <text decode='true'>&nbsp;&nbsp;{{item.intro}}</text>
             </view>
-            <view>
-              <text class='time'>{{item.beginTime}}-{{item.endTime}}</text>
+            <view class='time-wrapper'>
+              <text class='time' decode='true'>{{item.beginTime}} - {{item.endTime}}&nbsp;</text>
             </view>
           </view>
         </view>

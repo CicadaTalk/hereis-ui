@@ -1,6 +1,6 @@
 .restaurant {
   padding-top: 10px;
-  font-family: cursive;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .category-name {

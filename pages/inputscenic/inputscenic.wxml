@@ -52,16 +52,10 @@
               </view>
             </view>
             <view class='detail-activity-picker'>
-              <text decode='true'>开始时间: &nbsp;</text>
-              <picker mode='date' value='2018-01-01' start="2018-01-01" end="2048-01-01" bindchange='bindBeginDateChange'>{{item.beginDate}}</picker>
-              <text decode='true'>&nbsp;&nbsp;&nbsp;</text>
-              <picker mode='time' value='12:00' start='00:00' end='23:59' bindchange='bindBeginTimeChange'>{{item.beginTime}}</picker>
+              <picker mode='time' value='12:00' start='00:00' end='23:59' bindchange='bindBeginTimeChange'>开始时间:    {{item.beginTime}}</picker>
             </view>
             <view class='detail-activity-picker'>
-              <text decode='true'>结束时间: &nbsp;</text>
-              <picker mode='date' value='2018-01-01' start="2018-01-01" end="2048-01-01" bindchange='bindEndDateChange'>{{item.endDate}}</picker>
-              <text decode='true'>&nbsp;&nbsp;&nbsp;</text>
-              <picker mode='time' value='17:00' start='00:00' end='23:59' bindchange='bindEndTimeChange'>{{item.endTime}}</picker>
+              <picker mode='time' value='17:00' start='00:00' end='23:59' bindchange='bindEndTimeChange'>结束时间:    {{item.endTime}}</picker>
             </view>
           </view>
         </block>
