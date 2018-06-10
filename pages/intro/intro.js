@@ -222,13 +222,28 @@ Page({
       }
     })
 
+    var that = this
     // 景点
     // this.getSpot(103.800433, 30.944567, 0.1);
     // 餐馆
     // this.getSpot(104.104005, 30.681519, 0.015);
     // this.getSpot(104.26884, 30.557151, 0.01);
 
-    this.getSpot(104.006506, 30.560417, 0.01);
+    //获取当前位置信息
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        console.log(res)
+
+        that.setData(
+          {
+            latitude: res.latitude,
+            longitude: res.longitude,
+          }
+        )
+        that.getSpot(res.longitude, res.latitude, 0.01);
+      }
+    })
   },
 
   /**
