@@ -3,8 +3,10 @@ const app = getApp()
 
 Page({
   data: {
-    latitude: 30.560417,
-    longitude: 104.006506,
+    latitude: 30.552350997924805,
+    longitude: 103.990234375,
+    // latitude: 30.560417,
+    // longitude: 104.006506,
     // latitude: 30.674137,
     // longitude: 104.044691,
     markers: [{
@@ -31,41 +33,43 @@ Page({
     var that = this
     
     //获取当前位置信息
-    // wx.getLocation({
-    //   type: 'gcj02',
-    //   success: function (res) {
-    //     console.log(res)
-
-    //     that.setData(
-    //       {
-    //         latitude: res.latitude,
-    //         longitude: res.longitude,
-    //       }
-    //     )
-    //   }
-    // })
-    //获取标注信息
-    wx.request({
-      url: 'https://lazyzhou.xin/getMarkerByGPS',
-      data: { 
-        gpsLng: that.data.longitude,
-        gpsLat: that.data.latitude,
-        r: 0.01
-      },
-      method: 'GET',
-      header: {
-        'content-type': 'application/json'
-      },
+    wx.getLocation({
+      type: 'gcj02',
       success: function (res) {
         console.log(res)
-        that.setData({
-          markers:res.data
+
+        that.setData(
+          {
+            latitude: res.latitude,
+            longitude: res.longitude,
+          }
+        )
+
+        //获取标注信息
+        wx.request({
+          url: 'https://lazyzhou.xin/getMarkerByGPS',
+          data: {
+            gpsLng: that.data.longitude,
+            gpsLat: that.data.latitude,
+            r: 0.01
+          },
+          method: 'GET',
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            console.log(res)
+            that.setData({
+              markers: res.data
+            })
+          },
+          fail: function (err) {
+            console.log(err);
+          }
         })
-      },
-      fail: function (err) {
-        console.log(err);
       }
     })
+    
 
   },
 
